@@ -14,7 +14,7 @@ const Guest = () => {
     addressLine1: '',
     addressLine2: '',
     country: '',
-    city: '',
+    city: ''
   });
 
   const [countries, setCountries] = useState([]);

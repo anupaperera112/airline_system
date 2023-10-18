@@ -69,7 +69,10 @@ const Login = ({setAuth}) =>
       })
       .catch(error => {
         // Handle errors from the backend (e.g., display an error message)
-        console.error(error);
+        // console.error(error);
+        if(error.response.status===401){
+          alert("Invalid Credentials");
+        }
       });
   };
 

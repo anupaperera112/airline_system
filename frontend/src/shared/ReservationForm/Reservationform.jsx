@@ -36,12 +36,15 @@ const ReservationForm = () => {
       console.log(response.data);
       if(response.data){
         sessionStorage.setItem("flight_schedule_id",JSON.stringify(response.data.flight_schedule_id));
-        // handleCheckButtonClick();
+        handleCheckButtonClick();
       }
     })
     .catch(error => {
       // Handle errors from the backend (e.g., display an error message)
       console.error(error);
+      if(error.response.status===401){
+        alert("there are no flights available for this route");
+      }
     });
   };
   
@@ -54,7 +57,7 @@ const ReservationForm = () => {
                   <h3>Departure</h3>
                   <div className="form-group">
                     <label htmlFor="departure-location">Location:</label>
-                    <select id="departure-location" name="departureLocation" className="form-control" onChange={handleChange}>
+                    <select id="departure-location" name="departureLocation" required className="form-control" onChange={handleChange}>
                       <option value="DEL">India, new Delhi</option>
                       <option value="BOM">India, Mumbai</option>
                       <option value="MAA">India, Chennai</option>
@@ -70,7 +73,7 @@ const ReservationForm = () => {
                   </div>
                   <div className="form-group">
                     <label htmlFor="departure-date">Date:</label>
-                    <input type="date" id="departure-date" name="departureDate" className="form-control" onChange={handleChange}/>
+                    <input type="date" id="departure-date" name="departureDate" required className="form-control" onChange={handleChange}/>
                   </div>
                   
                 </form>
@@ -82,7 +85,7 @@ const ReservationForm = () => {
                   <h3>Arrival</h3>
                   <div className="form-group">
                     <label htmlFor="arrival-location">Location:</label>
-                    <select id="arrival-location" name="arrivalLocation" className="form-control" onChange={handleChange}>
+                    <select id="arrival-location" name="arrivalLocation" required className="form-control" onChange={handleChange}>
                       <option value="DEL">India, new Delhi</option>
                       <option value="BOM">India, Mumbai</option>
                       <option value="MAA">India, Chennai</option>

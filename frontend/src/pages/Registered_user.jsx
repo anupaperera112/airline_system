@@ -115,6 +115,7 @@ const Registered_user = () => {
       .catch(error => {
         // Handle errors from the backend (e.g., display an error message)
         console.error(error);
+        
       });
   };
 
