@@ -290,7 +290,7 @@ const Registered_user = () => {
                 className="form-control"
                 value={formData.birthday}
                 onChange={handleChange}
-                required
+                // required
               />
              
 
