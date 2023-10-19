@@ -45,7 +45,7 @@ const Home = () => {
             <ServiceList />
 
             <Col lg="12">
-              <div className="head">Book a trip</div>
+              <div className="head">Book a trip </div>
             </Col>
           </Row>
         </Container>
@@ -57,7 +57,7 @@ const Home = () => {
         <Container>
           <Row>
             <Col lg="12">
-              <h2 className="gallery__title">Popular Routes</h2>
+              <h2 className="gallery__title">Popular Routes </h2>
             </Col>
             <Col lg="12">
               <ImagesGallery />
