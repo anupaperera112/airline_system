@@ -2,14 +2,11 @@ import React from 'react';
 
 const Pay = () => {
 
-    const handleClick = () =>{
-        document.getElementById('paid').innerHTML = "You have successfully purchased the Tickets!\n Happy Journey!!!";
-    }
-
   return (
     <div>
-        <p id = 'paid'></p>
-        <button onClick = {handleClick}>Pay</button>
+        <link to = '/thank-you'>
+            <button>Pay</button>
+        </link>
     </div>
     
   )

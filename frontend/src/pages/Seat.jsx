@@ -12,9 +12,12 @@ const Seat = () => {
     return (
         <section>
             <Container>
-        <button className="btn-primary" onClick={handleCheckButtonClick}>
-            Next
-        </button>
+        <link to='/pay'>
+            <button className="btn-primary" onClick={handleCheckButtonClick}>
+                Next
+            </button>
+        </link>
+        
         </Container>
         </section>
     );
