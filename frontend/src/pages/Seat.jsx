@@ -13,7 +13,7 @@ const Seat = () => {
         <section>
             <Container>
         <button className="btn-primary" onClick={handleCheckButtonClick}>
-            Next
+            Next page
         </button>
         </Container>
         </section>
