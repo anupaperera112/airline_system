@@ -5,7 +5,7 @@ import ProfileCard from '../shared/ProfileCard';
 import '../styles/profile.css'; 
 import backgroundImg from '../assets/images/back.jpg';
 
-import profile11 from '../assets/images/profile1.jpg';
+import profile1 from '../assets/images/profile1.jpg';
 import profile2 from '../assets/images/profile2.jpg';
 import profile3 from '../assets/images/profile3.jpg';
 import profile4 from '../assets/images/profile4.jpg';
@@ -63,7 +63,7 @@ function About() {
         <ProfileCard
           name="Hashini Ranaweera"
           role="Front-end Developer"
-          image={profile11}
+          image={profile1}
         />
         <ProfileCard
           name="Developer 2"
