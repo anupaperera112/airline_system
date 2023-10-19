@@ -15,7 +15,7 @@ const Thankyou = () => {
                     <i class="ri-checkbox-circle-line"></i>
                     </span>
                     <h1 className="mb-3 fw-semibold">Thank You!</h1>
-                    <h3 className>Your ticket is booked.Complete the payments</h3>
+                    <h3 className>Payment is successful.</h3>
 
 
                     <Button className="btn primary__btn w-25">
