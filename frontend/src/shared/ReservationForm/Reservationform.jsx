@@ -109,7 +109,7 @@ const ReservationForm = () => {
                 </form>
             </Row>
 
-            {/* Check Button */}
+            {/* Check   button */}
             <Row>
             <Col lg="12" className="text-right">
               <link to ="/availability">
