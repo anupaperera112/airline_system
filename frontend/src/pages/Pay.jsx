@@ -1,15 +1,22 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import {Button } from 'reactstrap';
 
 const Pay = () => {
+  const navigate = useNavigate();
 
-    const handleClick = () =>{
-        document.getElementById('paid').innerHTML = "You have successfully purchased the Tickets!\n Happy Journey!!!";
-    }
+  const handleCheckButtonClick = () => {
+    navigate('/home');
+    window.scrollTo(0, 0);
+};
+
 
   return (
     <div>
         <p id = 'paid'></p>
-        <button onClick = {handleClick}>Pay</button>
+        <div>
+          <Button  onClick={handleCheckButtonClick}>Pay</Button>
+        </div>
     </div>
     
   )

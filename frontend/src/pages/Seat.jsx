@@ -4,8 +4,15 @@ import { Container, Row, Col } from 'reactstrap';
 
 const Seat = () => {
     const navigate = useNavigate();
+    const token = sessionStorage.getItem("token");
+
     const handleCheckButtonClick = () => {
-        navigate('/user');
+        if(token){
+            navigate('/pay');
+        }else{
+            navigate('/user');
+        }
+        
         window.scrollTo(0, 0); 
     };
 

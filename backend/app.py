@@ -160,7 +160,7 @@ def my_profile(getemail):
     return response_body
 
 
-@app.route('/getflight', methods=["GET"])
+@app.route('/getflight', methods=["POST"])
 def get_flight():
     departureLocation = request.json["departureLocation"]
     departureDate = request.json["departureDate"]

@@ -38,6 +38,7 @@ const Availability = () => {
                 },
             }).then(resp => {
                 setData(resp.data);
+                handleCheckButtonClick();
             }).catch(error => {
                 console.error(error);
             });
@@ -49,7 +50,7 @@ const Availability = () => {
         <section>
         <Container>
         
-        <button className="btn-primary" onClick={handelAvailability}>
+        <button className="btn-primary" onClick={handleCheckButtonClick}>
             Next
         </button>
         </Container>
