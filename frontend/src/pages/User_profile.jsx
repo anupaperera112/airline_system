@@ -9,7 +9,7 @@ const User_profile = () => {
     const navigate = useNavigate();
 
     const handleCheckButtonClick = () => {
-        navigate('/homw');
+        navigate('/home');
         window.scrollTo(0, 0);
     };
 
