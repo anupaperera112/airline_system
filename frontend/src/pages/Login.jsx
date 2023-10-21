@@ -60,6 +60,7 @@ const Login = ({setAuth}) =>
         if(response.data && response.data.access_token){
           alert("Successfully Login");
           sessionStorage.setItem("token", response.data.access_token);
+          sessionStorage.setItem("email", credentials.email)
           navigateToHome();
           // return (<MessageComponent content="Please read the comments carefully"></MessageComponent>);
         } else{
@@ -107,7 +108,7 @@ const Login = ({setAuth}) =>
                     </Button>
                      */}
                 {/* </Form> */}
-                <p >Don't have an account?<Link to='/register' >Create </Link></p>
+                <p >Don't have an account?<Link to='/Registered_user' >Create </Link></p>
               </div>
  
             </div>

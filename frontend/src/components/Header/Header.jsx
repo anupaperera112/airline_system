@@ -158,7 +158,7 @@ const Header = () => {
                       </Button>
 
                       <Button className="btn primary__btn">
-                      <NavLink to="/profile" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
+                      <NavLink to="/User_profile" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
                         profile
                       </NavLink>
                       </Button>
@@ -201,7 +201,7 @@ const Header = () => {
                       </Button>
 
                       <Button className="btn primary__btn">
-                      <NavLink to="/profile" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
+                      <NavLink to="/User_profile" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
                         profile
                       </NavLink>
                       </Button>
