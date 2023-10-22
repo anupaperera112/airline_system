@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+import { Container,Button, Row, Col } from 'reactstrap';
 
 
 const Availability = () => {
@@ -49,9 +49,9 @@ const Availability = () => {
         <section>
         <Container>
         
-        <button className="btn-primary" onClick={handelAvailability}>
+        <Button className="btn-primary" onClick={handelAvailability}>
             Next
-        </button>
+        </Button>
         </Container>
         </section>
     );
