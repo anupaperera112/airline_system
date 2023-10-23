@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+import { Container,Button, Row, Col } from 'reactstrap';
 
 const Availability = () => {
     const flight_schedule_id = sessionStorage.getItem("flight_schedule_id");
@@ -42,6 +42,7 @@ const Availability = () => {
 
     return (
         <section>
+
             <Container>
                 {data1 && (
                     <div>
@@ -54,10 +55,11 @@ const Availability = () => {
                         <p><strong>Flight ID:</strong> {data1.flight_id}</p>
                     </div>
                 )}
-                <button className="btn-primary" onClick={handleSelectSeatButtonClick}>
+                <button className="btn-primary" onClick={handelAvailability}>
                     Select Seat
                 </button>
             </Container>
+
         </section>
     );
 };

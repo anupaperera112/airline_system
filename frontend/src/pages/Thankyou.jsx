@@ -1,11 +1,16 @@
 import React from 'react'
 import { Container,Row,Col,Button } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import '../styles/thank-you.css'
 
 
 
 const Thankyou = () => {
+    const navigate = useNavigate();
+    const handleThankButtonClick = () => {
+        navigate('/home');
+        window.scrollTo(0, 0); 
+    };
   return <section>
     <Container>
         <Row>
@@ -14,7 +19,9 @@ const Thankyou = () => {
                     <span>
                     <i class="ri-checkbox-circle-line"></i>
                     </span>
-                    <h1 className="mb-3 fw-semibold">Thank You!</h1>
+                    <h1 className="mb-3 fw-semibold">Thank You!</h1>          
+
+                    <h3 className>Booking Complete! Happy Journey!</h3>
                     <h3 className>Payment is successful.</h3>
 
 
@@ -23,6 +30,9 @@ const Thankyou = () => {
                             Back to Home
                         </Link>
 
+
+                    <Button className="btn primary__btn w-25" onClick = {handleThankButtonClick}>
+                        Back to Home
                     </Button>
                 </div>
             </Col>

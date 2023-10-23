@@ -44,6 +44,10 @@ const Login = ({setAuth}) =>
       navigate('/Home');
     }
   };
+  const navigateToPay = () => {
+    // navigate to /pay
+    navigate('/pay');
+  };
 
   const handleLogin = () => {
     // const history = useHistory();
@@ -80,6 +84,8 @@ const Login = ({setAuth}) =>
           alert("Invalid Credentials");
         }
       });
+
+      navigateToPay();
   };
 
 

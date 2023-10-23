@@ -21,16 +21,20 @@ const Seat = () => {
     return (
         <section>
             <Container>
+
                 <Form>
                     <FormGroup>
                         <Label for="seatNumber">Seat Number</Label>
                         <Input type="text" name="seatNumber" id="seatNumber" placeholder="Enter seat number" value={seatNumber} onChange={(e) => setSeatNumber(e.target.value)} required />
                     </FormGroup>
                 </Form>
-                <button className="btn-primary" onClick={handleSelectButtonClick}>
-                    Next page
-                </button>
+                <link to='/pay'>
+                  <button className="btn-primary" onClick={handleSelectButtonClick}>
+                     Next page
+                  </button>
+                </link>
             </Container>
+
         </section>
     );
 };

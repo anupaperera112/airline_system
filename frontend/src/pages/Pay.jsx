@@ -1,24 +1,25 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import {Button, Container } from 'reactstrap';
+
+import { Container, Row, Col } from 'reactstrap';
 
 const Pay = () => {
   const navigate = useNavigate();
-
   const handlePayButtonClick = () => {
     navigate('/thank-you');
-    window.scrollTo(0, 0);
-};
-
-
+    window.scroll(0,0);
+  };
   return (
-    <div>
-        <Container>
-          <Button  onClick={handlePayButtonClick}>Pay</Button>
-        </Container>        
-    </div>
+    <section>
+            <Container>
+                <button className="btn-primary" onClick={handlePayButtonClick}>
+                    Pay
+                </button>
+          </Container>
+    </section>
+
     
-  )
-}
+  );
+};
 
 export default Pay;
