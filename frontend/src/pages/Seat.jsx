@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 const Seat = () => {
+    const [seatNumber, setSeatNumber] = useState('');
     const navigate = useNavigate();
     const token = sessionStorage.getItem("token");
 
-    const handleCheckButtonClick = () => {
+    const handleSelectButtonClick = () => {
         if(token){
+            sessionStorage.setItem("seatNumber", seatNumber);
             navigate('/pay');
         }else{
             navigate('/user');
@@ -19,10 +21,16 @@ const Seat = () => {
     return (
         <section>
             <Container>
-        <button className="btn-primary" onClick={handleCheckButtonClick}>
-            Next page
-        </button>
-        </Container>
+                <Form>
+                    <FormGroup>
+                        <Label for="seatNumber">Seat Number</Label>
+                        <Input type="text" name="seatNumber" id="seatNumber" placeholder="Enter seat number" value={seatNumber} onChange={(e) => setSeatNumber(e.target.value)} required />
+                    </FormGroup>
+                </Form>
+                <button className="btn-primary" onClick={handleSelectButtonClick}>
+                    Next page
+                </button>
+            </Container>
         </section>
     );
 };
