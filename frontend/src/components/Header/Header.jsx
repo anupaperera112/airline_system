@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Container, Row, Button } from 'reactstrap';
 import { NavLink, useNavigate} from 'react-router-dom';
-import logowithname from '../../assets/images/logowithname.png';
+import logowithname from '../../assets/images/logo3.png';
 import './header.css';
 import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
@@ -88,7 +88,7 @@ const Header = () => {
     axios.post('http://127.0.0.1:5000/logout')
     .then(response => {
       alert("Successfully Logout");
-      sessionStorage.removeItem("token");
+      sessionStorage.clear();
       navigateToHome();
     })
     .catch(error => {
@@ -158,7 +158,7 @@ const Header = () => {
                       </Button>
 
                       <Button className="btn primary__btn">
-                      <NavLink to="/profile" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
+                      <NavLink to="/User_profile" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
                         profile
                       </NavLink>
                       </Button>
@@ -201,7 +201,7 @@ const Header = () => {
                       </Button>
 
                       <Button className="btn primary__btn">
-                      <NavLink to="/profile" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
+                      <NavLink to="/User_profile" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
                         profile
                       </NavLink>
                       </Button>

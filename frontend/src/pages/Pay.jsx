@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { Container, Row, Col } from 'reactstrap';
 
 const Pay = () => {
@@ -16,6 +17,7 @@ const Pay = () => {
                 </button>
           </Container>
     </section>
+
     
   );
 };

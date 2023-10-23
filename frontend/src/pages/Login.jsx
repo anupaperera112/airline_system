@@ -25,6 +25,7 @@ const Login = ({setAuth}) =>
   });
 
   const token = sessionStorage.getItem("token");
+  const flight_id = sessionStorage.getItem("flight_id");
 
   const handleChange = e =>{
     setCredentials(prev => ({ ...prev, [e.target.name]: e.target.value}))
@@ -35,9 +36,13 @@ const Login = ({setAuth}) =>
     e.preventDefault();
   }
 
-  const navigateToHome = () => {
-    // navigate to /Home
-    navigate('/Home');
+  const navigateto = () => {
+    // navigate to /home to select the flight, if already selected the flight, navigate to payment page
+    if(flight_id){
+      navigate('/pay');
+    }else{
+      navigate('/Home');
+    }
   };
   const navigateToPay = () => {
     // navigate to /pay
@@ -64,7 +69,8 @@ const Login = ({setAuth}) =>
         if(response.data && response.data.access_token){
           alert("Successfully Login");
           sessionStorage.setItem("token", response.data.access_token);
-          navigateToHome();
+          sessionStorage.setItem("email", credentials.email)
+          navigateto();
           // return (<MessageComponent content="Please read the comments carefully"></MessageComponent>);
         } else{
           console.error('Invalid response from server:', response.data);
@@ -98,10 +104,10 @@ const Login = ({setAuth}) =>
                 <h2 className='head_login'>Login</h2>
                 {/* <Form onSubmit={handleClick}> */}
                   <FormGroup>
-                    <input type="email" placeholder="Email" required id="box-log" name="email" onChange={handleChange}/>
+                    <input type="email" placeholder="Email" required  name="email" onChange={handleChange}/>
                   </FormGroup>
                   <FormGroup>
-                    <input type="password" placeholder="Password" required id="box-log" name = "password" onChange={handleChange}/>
+                    <input type="password" placeholder="Password" required  name = "password" onChange={handleChange}/>
                   </FormGroup>
                   
                   <Button className="btn_secondary1"  onClick={handleLogin}>
@@ -113,7 +119,7 @@ const Login = ({setAuth}) =>
                     </Button>
                      */}
                 {/* </Form> */}
-                <p >Don't have an account?<Link to='/register' >Create </Link></p>
+                <p >Don't have an account?<Link to='/Registered_user' >Create </Link></p>
               </div>
  
             </div>

@@ -109,14 +109,17 @@ const ReservationForm = () => {
                 </form>
             </Row>
 
-            {/* Check Button */}
+            {/* Check   button */}
             <Row>
             <Col lg="12" className="text-right">
+
             <link to='/availablity'>
               <button className="btn-primary" onClick={handleFlight}>
                 Check
               </button>
             </link>
+
+
             </Col>
             </Row>
         </Row>

@@ -4,7 +4,7 @@ import {Container, Row, Col, ListGroup,ListGroupItem} from 'reactstrap'
 
 import {Link} from 'react-router-dom'
 // import logoghj from "../../assets/images/logo.png"
-import logo from "../../assets/images/logo2.jpg"
+import logo from "../../assets/images/logo3.png"
 
 
 const quick__links=[
