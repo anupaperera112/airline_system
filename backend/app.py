@@ -236,7 +236,107 @@ def viweTicket():
 
     return jsonify(results)
 
+##############################################################################################################
+@app.route('/get_flight_schedule', methods=["GET"])
+def get_flight_schedule():
+    get_date = request.json["get_date"]
+    
+    cur = mysql.connection.cursor()
+    cur.execute("""call flight_schedule(%s);""",(get_date,))
 
+    
+    results1 = cur.fetchall()
+    
+    if not results1:
+        return jsonify({"error": "No flight schedule found"}), 401
+    cur.close()
+
+    results = [None] * len(results1)
+
+    for i in range(len(results1)):
+        
+        results[i] = list(results1[i])   
+
+        departure_time = results[i][2]
+        hours, remainder = divmod(departure_time.seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        departure_time_str = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+        results[i][2] = departure_time_str
+
+        arival_time = results[i][3].strftime("%Y-%m-%d %H:%M:%S")
+        results[i][3] = arival_time
+
+    return jsonify(results)
+
+
+
+@app.route('/passengers_above_18', methods=["GET"])
+def passengers_above_18():
+    flight_no = request.json["flight_no"]
+
+    cur = mysql.connection.cursor()
+    cur.execute("""call get_all_passengers_above_18(%s);""",(flight_no,))
+    results = cur.fetchall()
+    if not results:
+        return jsonify({"error": "No passenger list found"}), 401
+    cur.close()
+
+    return jsonify(results)
+
+
+@app.route('/passengers_below_18', methods=["GET"])
+def passengers_below_18():
+    flight_no = request.json["flight_no"]
+
+    cur = mysql.connection.cursor()
+    cur.execute("""call get_all_passengers_below_18(%s);""",(flight_no,))
+    results = cur.fetchall()
+    if not results:
+        return jsonify({"error": "No passenger list found"}), 401
+    cur.close()
+
+    return jsonify(results)
+
+@app.route('/passengers_list', methods=["GET"])
+def passengers_list():
+    flight_no = request.json["flight_no"]
+
+    cur = mysql.connection.cursor()
+    cur.execute("""call get_all_passengers(%s);""",(flight_no,))
+    results = cur.fetchall()
+    if not results:
+        return jsonify({"error": "No passenger list found"}), 401
+    cur.close()
+
+    return jsonify(results)
+
+@app.route('/number_of_passengers_for_dest_range', methods=["GET"])
+def number_of_passengers_for_dest_range():
+    date1 = request.json["date1"]
+    date2 = request.json["date2"]
+    destination = request.json["destination"]
+
+    cur = mysql.connection.cursor()
+    cur.execute("""call number_of_passengers_for_dest_range(%s,%s,%s);""",(destination,date1, date2,))
+    results = cur.fetchall()
+    if not results:
+        return jsonify({"error": "No passenger list found"}), 401
+    cur.close()
+
+    return jsonify(results)
+
+@app.route('/past_flight', methods=["GET"])
+def past_flight():
+    departureLocation = request.json["departureLocation"]
+    arrivalLocation = request.json["arrivalLocation"]
+
+    cur = mysql.connection.cursor()
+    cur.execute("""call past_flight(%s, %s);""",(arrivalLocation, departureLocation,))
+    results = cur.fetchall()
+    if not results:
+        return jsonify({"error": "No flights found"}), 401
+    cur.close()
+    return jsonify(results)
 
 if __name__ == '__main__':
     app.run()

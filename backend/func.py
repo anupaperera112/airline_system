@@ -13,3 +13,5 @@ def calculate_age(birth_date):
         ((today.month, today.day) < (date_birthday.month, date_birthday.day))
 
     return age
+
+# Path: backend/func.py
