@@ -55,7 +55,7 @@ const Availability = () => {
                         <p><strong>Flight ID:</strong> {data1.flight_id}</p>
                     </div>
                 )}
-                <button className="btn-primary" onClick={handelAvailability}>
+                <button className="btn-primary" onClick={handleSelectSeatButtonClick}>
                     Select Seat
                 </button>
             </Container>

@@ -64,16 +64,16 @@ const scrollToTop = () => {
             <p>Elevate your travel experience into a seamless journey with B Airlines' innovative services and unbeatable travel solutions.</p>
             <div className="social__links d-flex align-items-center gap-4">
               <span>
-                <Link to="#"><i class="ri-youtube-fill"></i></Link>
+                <Link to="#"><i className="ri-youtube-fill"></i></Link>
               </span>
               <span>
-                <Link to="#"><i class="ri-github-fill"></i></Link>
+                <Link to="#"><i className="ri-github-fill"></i></Link>
               </span>
               <span>
-                <Link to="#"><i class="ri-facebook-circle-fill"></i></Link>
+                <Link to="#"><i className="ri-facebook-circle-fill"></i></Link>
               </span>
               <span>
-                <Link to="#"><i class="ri-instagram-fill"></i></Link>
+                <Link to="#"><i className="ri-instagram-fill"></i></Link>
               </span>
             </div>
           </Col>
@@ -110,7 +110,7 @@ const scrollToTop = () => {
                 <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-3">
                   <h6 className="mb-0 d-flex align-items-center gap-2">
                     <span>
-                    <i class="ri-mail-send-fill"></i>
+                    <i className="ri-mail-send-fill"></i>
                     </span>
                     Email:
                   </h6>
@@ -122,7 +122,7 @@ const scrollToTop = () => {
                 <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-3">
                   <h6 className="mb-0 d-flex align-items-center gap-2">
                     <span>
-                    <i class="ri-phone-fill"></i>
+                    <i className="ri-phone-fill"></i>
                     </span>
                     Phone:
                   </h6>
@@ -134,7 +134,7 @@ const scrollToTop = () => {
                 <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-3">
                   <h6 className="mb-0 d-flex align-items-center gap-2">
                     <span>
-                    <i class="ri-message-2-fill"></i>
+                    <i className="ri-message-2-fill"></i>
                     </span>
                     Text  :
                   </h6>
