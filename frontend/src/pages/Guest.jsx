@@ -277,7 +277,7 @@ const Guest = () => {
             </label>
           </div>
 
-          <button type="submit" class ="btn-primary" onClick={handleRegistration}>Submit</button>
+          <button type="submit" className ="btn-primary" onClick={handleRegistration}>Submit</button>
         </form>
       </div>
     </div>

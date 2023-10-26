@@ -40,13 +40,11 @@ const Login = ({setAuth}) =>
     // navigate to /home to select the flight, if already selected the flight, navigate to payment page
     if(flight_id){
       navigate('/pay');
+      window.scrollTo(0, 0);
     }else{
       navigate('/Home');
+      window.scrollTo(0, 0);
     }
-  };
-  const navigateToPay = () => {
-    // navigate to /pay
-    navigate('/pay');
   };
 
   const handleLogin = () => {
@@ -85,7 +83,7 @@ const Login = ({setAuth}) =>
         }
       });
 
-      navigateToPay();
+  
   };
 
 

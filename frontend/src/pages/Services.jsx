@@ -8,6 +8,7 @@ import offer3 from '../assets/images/service3.jpg';
 import offer4 from '../assets/images/service4.jpg';
 import offer5 from '../assets/images/service5.jpg';
 import offer6 from '../assets/images/service6.jpg';
+import offer7 from '../assets/images/service22.jpg';
 
 function Card_service({ imgSrc, title, text, buttonClass }) {
   const imgStyle = {
@@ -35,7 +36,7 @@ function Services() {
           text="Our system empowers airlines with real-time dynamic pricing and promotions. Special deals, limited-time offers, and tailored discounts can be set for specific routes and customer groups."
         />
         <Card_service
-          imgSrc={offer2}
+          imgSrc={offer7}
           title="User-Friendly Interface"
           text="Our Airline Reservation System offers an intuitive, user-friendly interface for easy flight booking. Customers can effortlessly find and book flights, thanks to its streamlined design and simple navigation."
         />

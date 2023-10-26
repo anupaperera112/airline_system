@@ -121,7 +121,7 @@ const Header = () => {
                       <li className="nav__item" key={index}>
                         <NavLink
                           to={item.path}
-                          activeClassName="active__link"
+                          activeclassname="active__link"
                           onClick={() => {
                             closeMobileMenu();
                             scrollToTop(); // Scroll to the top of the page

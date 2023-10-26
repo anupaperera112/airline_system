@@ -17,7 +17,7 @@ const Thankyou = () => {
             <Col lg='12' className='pt-5 text-center'>
                 <div className="thank__you">
                     <span>
-                    <i class="ri-checkbox-circle-line"></i>
+                    <i className="ri-checkbox-circle-line"></i>
                     </span>
                     <h1 className="mb-3 fw-semibold">Thank You!</h1>          
 
@@ -25,14 +25,14 @@ const Thankyou = () => {
                     <h3 className>Payment is successful.</h3>
 
 
-                    <Button className="btn primary__btn w-25">
+                    <Button className="btn primary__btn w-25" onClick = {handleThankButtonClick}>
                         <Link to="/home">
                             Back to Home
                         </Link>
 
 
-                    <Button className="btn primary__btn w-25" onClick = {handleThankButtonClick}>
-                        Back to Home
+                    
+                       
                     </Button>
                 </div>
             </Col>
