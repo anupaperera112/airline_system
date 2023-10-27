@@ -199,7 +199,7 @@ def get_flight():
         "flight_id": flight_id
     }
 
-    return jsonify(response_body)
+    return jsonify(response_body), 200
 
 ### this for get the flight details
 # @app.route('/available', methods=["POST"])
@@ -237,9 +237,10 @@ def viweTicket():
     return jsonify(results)
 
 ##############################################################################################################
-@app.route('/get_flight_schedule', methods=["GET"])
+@app.route('/get_flight_schedule', methods=["POST"])
 def get_flight_schedule():
     get_date = request.json["get_date"]
+    # get_date = request.args.get('get_date')
     
     cur = mysql.connection.cursor()
     cur.execute("""call flight_schedule(%s);""",(get_date,))
@@ -252,19 +253,20 @@ def get_flight_schedule():
     cur.close()
 
     results = [None] * len(results1)
-
+    print(results1)
     for i in range(len(results1)):
         
         results[i] = list(results1[i])   
 
-        departure_time = results[i][2]
+        departure_time = results[i][3]
         hours, remainder = divmod(departure_time.seconds, 3600)
         minutes, seconds = divmod(remainder, 60)
         departure_time_str = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
-        results[i][2] = departure_time_str
+        results[i][3] = departure_time_str
 
-        arival_time = results[i][3].strftime("%Y-%m-%d %H:%M:%S")
-        results[i][3] = arival_time
+        arival_time = results[i][4].strftime("%Y-%m-%d %H:%M:%S")
+        results[i][4] = arival_time
+
 
     return jsonify(results)
 

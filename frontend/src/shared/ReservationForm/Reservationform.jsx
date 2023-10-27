@@ -16,8 +16,7 @@ const ReservationForm = () => {
   const handleChange = e => { setTrip(prev => ({ ...prev, [e.target.name]: e.target.value}))}
 
   const handleCheckButtonClick = () => {
-    navigate('/availability');
-    window.scrollTo(0, 0); 
+ 
   };
 
   const handleFlight = () => {
@@ -34,15 +33,18 @@ const ReservationForm = () => {
     })
     .then(response => {
       console.log(response.data);
-      if(response.data){
-        sessionStorage.setItem("flight_schedule_id",JSON.stringify(response.data.flight_schedule_id));
-        sessionStorage.setItem("flight_date",JSON.stringify(response.data.flight_date));
-        sessionStorage.setItem("arrival_time",JSON.stringify(response.data.arrival_time));
-        sessionStorage.setItem("departure_time",JSON.stringify(response.data.departure_time));
-        sessionStorage.setItem("aircraft_id",JSON.stringify(response.data.aircraft_id));
-        sessionStorage.setItem("flight_id",JSON.stringify(response.data.flight_id));
+      if(response.data && response.status===200){
   
-        handleCheckButtonClick();
+          sessionStorage.setItem("flight_schedule_id",JSON.stringify(response.data.flight_schedule_id));
+          sessionStorage.setItem("flight_date",JSON.stringify(response.data.flight_date));
+          sessionStorage.setItem("arrival_time",JSON.stringify(response.data.arrival_time));
+          sessionStorage.setItem("departure_time",JSON.stringify(response.data.departure_time));
+          sessionStorage.setItem("aircraft_id",JSON.stringify(response.data.aircraft_id));
+          sessionStorage.setItem("flight_id",JSON.stringify(response.data.flight_id));
+    
+          navigate('/availability');
+          window.scrollTo(0, 0);
+
       }
     })
     .catch(error => {
@@ -50,6 +52,8 @@ const ReservationForm = () => {
       console.error(error);
       if(error.response.status===401){
         alert("there are no flights available for this route");
+        navigate('/home');
+        window.scrollTo(0, 0);
       }
     });
   };
@@ -115,9 +119,9 @@ const ReservationForm = () => {
 
             
               <button className="btn-primary" onClick={handleFlight}>
-              <Link to='/availablity'>
+
                 Check
-                </Link>
+
               </button>
             
 

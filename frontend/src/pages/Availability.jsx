@@ -19,26 +19,26 @@ const Availability = () => {
 
     const [data1, setData] = useState(null);
 
-    useEffect(() => {
-        const availabilityData = {
-            flight_schedule_id: flight_schedule_id,
-            flight_date: flight_date,
-            arrival_time: arrival_time,
-            departure_time: departure_time,
-            aircraft_id: aircraft_id,
-            flight_id: flight_id,
-        };
+    // useEffect(() => {
+    //     const availabilityData = {
+    //         flight_schedule_id: flight_schedule_id,
+    //         flight_date: flight_date,
+    //         arrival_time: arrival_time,
+    //         departure_time: departure_time,
+    //         aircraft_id: aircraft_id,
+    //         flight_id: flight_id,
+    //     };
       
-        axios.post('http://127.0.0.1:5000/available', availabilityData, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }).then(resp => {
-            setData(resp.data);
-        }).catch(error => {
-            console.error(error);
-        });
-    }, []);
+    //     axios.post('http://127.0.0.1:5000/available', availabilityData, {
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //     }).then(resp => {
+    //         setData(resp.data);
+    //     }).catch(error => {
+    //         console.error(error);
+    //     });
+    // }, []);
 
     return (
         <section>
