@@ -18,6 +18,12 @@ const ReservationForm1 = () => {
       window.scrollTo(0, 0);   
   };
 
+
+  const goHomeReports = () => {
+    navigate('/reports');      
+    window.scrollTo(0, 0); 
+  };
+
   const handleFlight = () => {
     const tripData = {
         get_date: trip.get_date,
@@ -32,19 +38,7 @@ const ReservationForm1 = () => {
       console.log(response.data);
       setSchedule(response.data);
       setShowSchedule(true);
-    //   if(response.data && response.status===200){
-  
-    //       sessionStorage.setItem("flight_schedule_id",JSON.stringify(response.data.flight_schedule_id));
-    //       sessionStorage.setItem("flight_date",JSON.stringify(response.data.flight_date));
-    //       sessionStorage.setItem("arrival_time",JSON.stringify(response.data.arrival_time));
-    //       sessionStorage.setItem("departure_time",JSON.stringify(response.data.departure_time));
-    //       sessionStorage.setItem("aircraft_id",JSON.stringify(response.data.aircraft_id));
-    //       sessionStorage.setItem("flight_id",JSON.stringify(response.data.flight_id));
-    
-    //       navigate('/availability');
-    //       window.scrollTo(0, 0);
 
-    //   }
     })
     .catch(error => {
       // Handle errors from the backend (e.g., display an error message)
@@ -76,6 +70,8 @@ const ReservationForm1 = () => {
             <Row>
                 <Col lg="12" className="text-right">      
                 <button className="btn-primary" onClick={handleFlight}> Check </button>
+                <button className="btn-primary" onClick={goHomeReports}> rep </button>
+
                 </Col>
             </Row>
             {showSchedule && (

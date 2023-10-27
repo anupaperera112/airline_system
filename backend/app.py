@@ -33,7 +33,7 @@ jwt = JWTManager(app)
 def hello_world():
     return 'Hello, World!'
 
-
+###8888
 @app.route("/signup/<type>", methods=["POST"])
 def signup(type):
     # # Extract data from the JSON request data
@@ -73,7 +73,7 @@ def signup(type):
         "message": "User created successfully"
     }), 201
 
-
+###8888
 @app.route("/login", methods=["POST"])
 def login_user():
     # Extract email and password from the JSON request data
@@ -103,7 +103,7 @@ def login_user():
         "email": email
     })
 
-
+###8888
 @app.after_request
 def refresh_expiring_jwts(response):
     try:
@@ -121,14 +121,14 @@ def refresh_expiring_jwts(response):
         # Case where there is not a valid JWT. Just return the original respone
         return response
 
-
+###8888
 @app.route("/logout", methods=["POST"])
 def logout():
     response = jsonify({"msg": "logout successful"})
     unset_jwt_cookies(response)
     return response
 
-
+###8888
 @app.route('/profile/<getemail>', methods=["GET"])
 @jwt_required()
 def my_profile(getemail):
@@ -159,7 +159,7 @@ def my_profile(getemail):
 
     return response_body
 
-
+###8888
 @app.route('/getflight', methods=["POST"])
 def get_flight():
     departureLocation = request.json["departureLocation"]
@@ -234,9 +234,10 @@ def viweTicket():
         return jsonify({"error": "No tickets found"}), 401
     cur.close()
 
-    return jsonify(results)
+    return jsonify(results), 201
 
 ##############################################################################################################
+###8888
 @app.route('/get_flight_schedule', methods=["POST"])
 def get_flight_schedule():
     get_date = request.json["get_date"]
@@ -253,7 +254,7 @@ def get_flight_schedule():
     cur.close()
 
     results = [None] * len(results1)
-    print(results1)
+
     for i in range(len(results1)):
         
         results[i] = list(results1[i])   
@@ -268,11 +269,11 @@ def get_flight_schedule():
         results[i][4] = arival_time
 
 
-    return jsonify(results)
+    return jsonify(results), 201
 
 
 
-@app.route('/passengers_above_18', methods=["GET"])
+@app.route('/passengers_above_18', methods=["POST"])
 def passengers_above_18():
     flight_no = request.json["flight_no"]
 
@@ -283,10 +284,10 @@ def passengers_above_18():
         return jsonify({"error": "No passenger list found"}), 401
     cur.close()
 
-    return jsonify(results)
+    return jsonify(results), 201
 
 
-@app.route('/passengers_below_18', methods=["GET"])
+@app.route('/passengers_below_18', methods=["POST"])
 def passengers_below_18():
     flight_no = request.json["flight_no"]
 
@@ -297,9 +298,9 @@ def passengers_below_18():
         return jsonify({"error": "No passenger list found"}), 401
     cur.close()
 
-    return jsonify(results)
+    return jsonify(results), 201
 
-@app.route('/passengers_list', methods=["GET"])
+@app.route('/passengers_list', methods=["POSt"])
 def passengers_list():
     flight_no = request.json["flight_no"]
 
@@ -310,9 +311,9 @@ def passengers_list():
         return jsonify({"error": "No passenger list found"}), 401
     cur.close()
 
-    return jsonify(results)
+    return jsonify(results), 201
 
-@app.route('/number_of_passengers_for_dest_range', methods=["GET"])
+@app.route('/number_of_passengers_for_dest_range', methods=["POSt"])
 def number_of_passengers_for_dest_range():
     date1 = request.json["date1"]
     date2 = request.json["date2"]
@@ -325,9 +326,9 @@ def number_of_passengers_for_dest_range():
         return jsonify({"error": "No passenger list found"}), 401
     cur.close()
 
-    return jsonify(results)
+    return jsonify(results), 201
 
-@app.route('/past_flight', methods=["GET"])
+@app.route('/past_flight', methods=["POST"])
 def past_flight():
     departureLocation = request.json["departureLocation"]
     arrivalLocation = request.json["arrivalLocation"]
@@ -338,7 +339,7 @@ def past_flight():
     if not results:
         return jsonify({"error": "No flights found"}), 401
     cur.close()
-    return jsonify(results)
+    return jsonify(results), 201
 
 if __name__ == '__main__':
     app.run()

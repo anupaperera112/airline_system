@@ -16,6 +16,7 @@ import Guest from '../pages/Guest';
 import Registered_user from '../pages/Registered_user';
 import Thankyou from '../pages/Thankyou';
 import Profile from '../pages/Profile';
+import Reports from '../pages/Reports';
 
 
 
@@ -49,9 +50,8 @@ const Routers = () => {
     <Route path='/profile' element={<Profile/>} />
     <Route path='/registered_user' element={<Registered_user/>} />
     <Route path='/thank-you' element={<Thankyou/>}/>
-
+    <Route path='/reports' element={<Reports/>}/>
     <Route path='/user_profile' element={<User_profile/>}/>
-
     <Route path='/pay' element={<Pay/>}/>
    </Routes>
   )

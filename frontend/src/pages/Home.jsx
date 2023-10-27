@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import heroImg01 from '../assets/images/main.png';
 import ServiceList from '../services/ServiceList';
@@ -8,6 +9,8 @@ import ReservationForm from '../shared/ReservationForm/Reservationform';
 import ReservationForm1 from '../shared/ReservationForm/Reservationform1';
 
 const Home = () => {
+
+
   return (
     <div className="page-container">
       <section>
