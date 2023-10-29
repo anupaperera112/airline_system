@@ -11,7 +11,7 @@ import Login from '../pages/Login';
 import Availability from '../pages/Availability';
 import Seat from '../pages/Seat';
 import User from '../pages/User';
-import Register from '../pages/Register';
+import Ticket from '../pages/Ticket';
 import Guest from '../pages/Guest';
 import Registered_user from '../pages/Registered_user';
 import Thankyou from '../pages/Thankyou';
@@ -44,7 +44,7 @@ const Routers = () => {
     <Route path='/login' element={<Login/>} />
     <Route path='/availability' element={<Availability/>} />
     <Route path='/seat' element={<Seat/>} />
-    <Route path='/register' element={<Register/>} />
+    <Route path='/ticket' element={<Ticket/>} />
     <Route path='/guest' element={<Guest/>} />
     <Route path='/user' element={<User/>} />
     <Route path='/profile' element={<Profile/>} />

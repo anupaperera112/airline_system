@@ -25,9 +25,14 @@ const ReservationForm1 = () => {
     navigate('/reports');      
     window.scrollTo(0, 0); 
   };
+  const goHomeTicket = () => {
+    navigate('/ticket');      
+    window.scrollTo(0, 0); 
+  };
 
   const setFlight = ()=> {
-    sessionStorage.setItem("flight_schedule_id",JSON.stringify(trip.flight_number));
+    sessionStorage.setItem("flight_schedule_id",trip.flight_number);
+   
   };
 
   const handleCombinedClick = () => {
@@ -83,6 +88,7 @@ const ReservationForm1 = () => {
                 <Col lg="12" className="text-right">      
                 <button className="btn-primary" onClick={handleFlight}> Check </button>
                 <button className="btn-primary" onClick={goHomeReports}> rep </button>
+                <button className="btn-primary" onClick={goHomeTicket}> ticket </button>
 
                 </Col>
             </Row>

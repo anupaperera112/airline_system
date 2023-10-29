@@ -35,7 +35,8 @@ const ReservationForm = () => {
       console.log(response.data);
       if(response.data && response.status===200){
   
-          sessionStorage.setItem("flight_schedule_id",JSON.stringify(response.data.flight_schedule_id));
+          sessionStorage.setItem("flight_schedule_id",response.data.flight_schedule_id);
+
 
     
           navigate('/seat');

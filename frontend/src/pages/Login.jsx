@@ -67,6 +67,7 @@ const Login = ({setAuth}) =>
         if(response.data && response.data.access_token){
           alert("Successfully Login");
           sessionStorage.setItem("token", response.data.access_token);
+          sessionStorage.setItem("passenger_id", response.data.passenger_id);
           sessionStorage.setItem("email", credentials.email)
           navigateto();
           // return (<MessageComponent content="Please read the comments carefully"></MessageComponent>);
