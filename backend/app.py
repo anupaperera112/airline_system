@@ -29,7 +29,7 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 jwt = JWTManager(app)
 
 
-@app.route('/')
+@app.route('/', methods=["POST"])
 def hello_world():
     return 'Hello, World!'
 
@@ -51,26 +51,39 @@ def signup(type):
     age = calculate_age(birthday)
     address = addressLine1 + " " + addressLine2 + " " + city
 
-    cur = mysql.connection.cursor()
-    cur.execute("""call check_user_exsits(%s);;""", (email,))
-    user_exists = cur.fetchone()
+    cursor = mysql.connection.cursor()
+    cursor.execute("""call check_user_exsits(%s);;""", (email,))
+    user_exists = cursor.fetchall()
+
+ 
 
     if user_exists:
         return jsonify({"error": "Email already exists"}), 409
 
     if (type == "r"):
+
         password = request.json["password"]
         hashed_password = bcrypt.generate_password_hash(password)
-        cur.execute("""call register(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);""",
-                    ("gold", firstName, lastName, 0, age, email, gender, passportNumber, address, country, birthday, hashed_password,))
-    else:
-        cur.execute("""call register_guest(%s, %s, %s, %s, %s, %s, %s, %s, %s);""",
-                    (firstName, lastName, age, email, gender, passportNumber, address, country, birthday,))
+        cursor.execute("""call new_user(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);""",
+                    ("new_user", firstName, lastName, 0, age, email, gender, passportNumber, address, country, birthday, hashed_password,))
+        
+ 
 
+    else:
+
+        cursor.execute("""call Unregistered(%s, %s, %s, %s, %s, %s, %s, %s, %s);""",
+                    (firstName, lastName, age, email, gender, passportNumber, address, country, birthday,))
+        
+       
+    cursor.execute("""SELECT passenger_id FROM passenger ORDER BY passenger_id DESC LIMIT 1;""")
+    passenger_id = cursor.fetchone()[0]
     mysql.connection.commit()
-    cur.close()
+    cursor.close()
+    
+ 
     return jsonify({
-        "message": "User created successfully"
+        "message": "User created successfully",
+        "passenger_id": passenger_id,
     }), 201
 
 ###8888

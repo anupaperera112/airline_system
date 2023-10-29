@@ -25,7 +25,7 @@ const Login = ({setAuth}) =>
   });
 
   const token = sessionStorage.getItem("token");
-  const flight_id = sessionStorage.getItem("flight_id");
+  const flight_schedule_id = sessionStorage.getItem("flight_schedule_id");
 
   const handleChange = e =>{
     setCredentials(prev => ({ ...prev, [e.target.name]: e.target.value}))
@@ -38,7 +38,7 @@ const Login = ({setAuth}) =>
 
   const navigateto = () => {
     // navigate to /home to select the flight, if already selected the flight, navigate to payment page
-    if(flight_id){
+    if(flight_schedule_id){
       navigate('/pay');
       window.scrollTo(0, 0);
     }else{

@@ -4,6 +4,8 @@ import { Container, Row, Col } from 'reactstrap';
 import './ReservationForm.css';
 import axios from 'axios';
 
+// should add required fields
+
 const ReservationForm1 = () => {
   const navigate = useNavigate(); 
 
@@ -14,7 +16,7 @@ const ReservationForm1 = () => {
   const handleChange = e => { setTrip(prev => ({ ...prev, [e.target.name]: e.target.value}))}
 
   const navigateto = () => {
-      navigate('/availability');
+      navigate('/seat');
       window.scrollTo(0, 0);   
   };
 
@@ -22,6 +24,15 @@ const ReservationForm1 = () => {
   const goHomeReports = () => {
     navigate('/reports');      
     window.scrollTo(0, 0); 
+  };
+
+  const setFlight = ()=> {
+    sessionStorage.setItem("flight_schedule_id",JSON.stringify(trip.flight_number));
+  };
+
+  const handleCombinedClick = () => {
+    setFlight();
+    navigateto();
   };
 
   const handleFlight = () => {
@@ -38,6 +49,7 @@ const ReservationForm1 = () => {
       console.log(response.data);
       setSchedule(response.data);
       setShowSchedule(true);
+      
 
     })
     .catch(error => {
@@ -106,10 +118,10 @@ const ReservationForm1 = () => {
                                     <h3>Departure</h3>
                                     <div className="form-group">
                                         <label htmlFor="departure-date">Enter flight Number here:</label>
-                                        <input type="text" id="flight-number" name="flight_number" required className="form-control" onChange={handleChange}/>                                    </div>
+                                        <input type="text" id="flight-number" name="flight_number" required className="form-control" onChange={handleChange} />                                    </div>
                   
                                 </form>
-                                <button className="btn-primary" onClick={navigateto}> BOOK NOW </button>
+                                <button className="btn-primary" onClick={handleCombinedClick}> BOOK NOW </button>
                             </div>
                             
                         </Row>
