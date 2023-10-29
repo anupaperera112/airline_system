@@ -1,41 +1,69 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+
+import { Container, Row, Col } from 'reactstrap';
+import '../styles/seat.css';
+import userImage from '../assets/images/seat_map.png';
+import userImage2 from '../assets/images/topic.png';
+
 
 const Seat = () => {
     const [seatNumber, setSeatNumber] = useState('');
     const navigate = useNavigate();
-    const token = sessionStorage.getItem("token");
 
-    const handleSelectButtonClick = () => {
-        if(token){
-            sessionStorage.setItem("seatNumber", seatNumber);
-            navigate('/pay');
-        }else{
-            navigate('/user');
-        }
-        
-        window.scrollTo(0, 0); 
+    const handleCheckButtonClick = () => {
+        navigate('/user');
+        window.scrollTo(0, 0);
+
     };
 
     return (
-        <section>
+        
             <Container>
 
-                <Form>
-                    <FormGroup>
-                        <Label for="seatNumber">Seat Number</Label>
-                        <Input type="text" name="seatNumber" id="seatNumber" placeholder="Enter seat number" value={seatNumber} onChange={(e) => setSeatNumber(e.target.value)} required />
-                    </FormGroup>
-                </Form>
-                <link to='/pay'>
-                  <button className="btn-primary" onClick={handleSelectButtonClick}>
-                     Next page
-                  </button>
-                </link>
-            </Container>
+            <div className="seat-box">
+                <Row>
+                    <img src={userImage2} alt="User Profile" className="img-fluid" style={{ maxWidth: '50vw', marginLeft: '17vw' }} />
+                </Row>
+                <Row>
+                    <p></p>
+                    <p></p>
+                </Row>
 
-        </section>
+                <Row className="mb-4 d-flex align-items-center justify-content-center" >
+                    <Col className="text-center">
+                        <img src={userImage} alt="User Profile" className="img-fluid" />
+                    </Col>
+                </Row>
+
+                <Row className="justify-content-center mb-3">
+                    <Col md={4}>
+                        <div className="mb-3">
+                            <label htmlFor="numberOfSeats" className="form-label">No. of seats going to book</label>
+                            <input type="number" className="form-control" id="numberOfSeats" placeholder="Enter number of seats" min="0"/>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="seatNumbers" className="form-label">Seat Numbers(Ex: A01 A02 ..)</label>
+                            <input type="text" className="form-control" id="seatNumbers" placeholder="Enter seat numbers" />
+                        </div>
+                    </Col>
+                </Row>
+                <Row className="justify-content-center">
+                    <Col md={4} className="text-center">
+                        <button className="btn btn-success" onClick={handleCheckButtonClick}>
+                            Check
+                        </button>
+                    </Col>
+                </Row>
+                <Row>
+                <p></p>
+                <p></p>
+                </Row>
+                    
+                    </div>
+            </Container>
+        
+
     );
 };
 
