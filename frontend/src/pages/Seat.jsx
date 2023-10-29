@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { Container, Row, Col } from 'reactstrap';
 import '../styles/seat.css';
 import userImage from '../assets/images/seat_map.png';
 import userImage2 from '../assets/images/topic.png';
 
+
 const Seat = () => {
+    const [seatNumber, setSeatNumber] = useState('');
     const navigate = useNavigate();
+
     const handleCheckButtonClick = () => {
         navigate('/user');
         window.scrollTo(0, 0);
+
     };
 
     return (
         
             <Container>
+
             <div className="seat-box">
                 <Row>
                     <img src={userImage2} alt="User Profile" className="img-fluid" style={{ maxWidth: '50vw', marginLeft: '17vw' }} />
@@ -57,6 +63,7 @@ const Seat = () => {
                     </div>
             </Container>
         
+
     );
 };
 

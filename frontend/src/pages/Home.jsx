@@ -5,6 +5,7 @@ import ServiceList from '../services/ServiceList';
 import ImagesGallery from '../components/Image-gallery/ImagesGallery';
 import Newsletter from '../shared/Newsletter';
 import ReservationForm from '../shared/ReservationForm/Reservationform';
+import ReservationForm1 from '../shared/ReservationForm/Reservationform1';
 
 const Home = () => {
   return (
@@ -45,13 +46,20 @@ const Home = () => {
             <ServiceList />
 
             <Col lg="12">
-              <div className="head">Book a trip </div>
+              <div className="head">If you know, where you want to go </div>
             </Col>
           </Row>
         </Container>
       </section>
 
       <ReservationForm />
+      <section>
+      <Col lg="12">
+              <div className="head">If not </div>
+            </Col>
+      </section>
+
+      <ReservationForm1 />
 
       <section>
         <Container>
