@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Container, Row, Col } from 'reactstrap';
@@ -38,34 +38,29 @@ const Seat = () => {
     const handleCheckButtonClick = () => {
         // navigateto();
         setSeatNo();
-        handleSeatCount();
+        
         window.scrollTo(0, 0);
     };
 
-    const handleSeatCount = () => {
+    useEffect(() => {
         const Data = {
             flight_schedule_id: schedule_id,
-
         };
-    
-        axios.post('http://127.0.0.1:5000/getAircraft', Data,{
-          headers: {
-            'Content-Type': 'application/json',
-          },
+
+        axios.post('http://127.0.0.1:5000/getAircraft', Data, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
         })
         .then(response => {
-          console.log(response.data);
-          setAirCraftModel(response.data);
-    
-          
+            console.log(response.data);
+            setAirCraftModel(response.data);
         })
         .catch(error => {
-          // Handle errors from the backend (e.g., display an error message)
-          console.error(error);
-         
+            // Handle errors from the backend (e.g., display an error message)
+            console.error(error);
         });
-      };
-
+    }, [schedule_id]);
     
 
     return (
