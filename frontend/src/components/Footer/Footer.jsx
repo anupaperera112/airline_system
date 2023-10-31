@@ -32,15 +32,11 @@ const quick__links=[
 
 const quick__links2=[
   {
-   path:'/gallery',
-   display:'Popular routes'
-  },
-  {
    path:'/login',
    display:'Login'
   },
   {
-   path:'/register',
+   path:'/registered_user',
    display:'Register'
   },
 ]
