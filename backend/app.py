@@ -253,12 +253,31 @@ def booking():
 def viweTicket():
     passenger_id = request.json["passenger_id"]
     cur = mysql.connection.cursor()
-    cur.execute("""select * from ticket where passenger_id = %s;""", (passenger_id,))
-    results = cur.fetchall()
+    cur.execute("""select * from flightticketbookingview where passenger_id = %s;""", (passenger_id,))
+    results1 = cur.fetchall()
+    results = [None] * len(results1)
+    
+    for i in range(len(results1)):
+        
+        results[i] = list(results1[i])   
+
+        flight_date = results[i][0].strftime("%Y-%m-%d")
+        results[i][0] = flight_date
+
+        departure_time = results[i][1]
+        hours, remainder = divmod(departure_time.seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        departure_time_str = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+        results[i][1] = departure_time_str
+
+        arival_time = results[i][2].strftime("%Y-%m-%d %H:%M:%S")
+        results[i][2] = arival_time
+
     
     if not results:
         return jsonify({"error": "No tickets found"}), 401
     cur.close()
+
 
     return jsonify(results), 201
 
