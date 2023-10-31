@@ -26,7 +26,7 @@ const AircraftTypeTotalRevenue = () => {
             if(response.status===201){
                 alert("Report genarate Successfully");
                 setTotalRevenue(response.data);
-                showSetTotalRevenue(true);
+                showSetTotalRevenue(true)
               }
           })
           .catch(error => {
@@ -40,7 +40,7 @@ const AircraftTypeTotalRevenue = () => {
         <Container style={{ backgroundColor: '#f0f0f0' }}>
         <form className="reservation-form">
             <h3>Total revenue aircraft type</h3>
-            <div className="form-group">
+            <div className="form-group" >
                 <label htmlFor="departure-date">Enter passenger type:</label>
                 <select id="aircraft-model" name="Atype" required className="form-control" onChange={handleChange}>
                     <option value="Boeing 737">Boeing 737</option>
@@ -51,7 +51,7 @@ const AircraftTypeTotalRevenue = () => {
             </div>
 
         </form>
-        <button className="btn-primary" onClick={handleTotalRevenue}> Get Report </button>
+        <button className="btn-primary" onClick={handleTotalRevenue }> Get Report </button>
         {showSetTotalRevenue && (
             
             <div>

@@ -87,7 +87,6 @@ const ReservationForm1 = () => {
             <Row>
                 <Col lg="12" className="text-right">      
                 <button className="btn-primary" onClick={handleFlight}> Check </button>
-                <button className="btn-primary" onClick={goHomeReports}> rep </button>
                 <button className="btn-primary" onClick={goHomeTicket}> ticket </button>
 
                 </Col>

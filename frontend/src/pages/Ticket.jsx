@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import '../styles/login.css';
-import { Container, Row, Col, Form, FormGroup, Button } from 'reactstrap';
-import { Link, useNavigate} from 'react-router-dom';
-import registerImg from '../assets/images/plane_Register.jpg';
-import { FcGoogle } from 'react-icons/fc';
+import { Container} from 'reactstrap';
 import '../styles/register.css';
 import axios from 'axios';
 
 const Ticket = () => {
 
-  const navigate = useNavigate();
+
   const colors = ['lightblue', 'lightyellow',  'lightgray'];
   const [ticket, setTicket] = useState();
 
-  const schedule_id = sessionStorage.getItem("flight_schedule_id");
+
 
 
 

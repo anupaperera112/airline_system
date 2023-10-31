@@ -51,8 +51,10 @@ const AllPassenger = () => {
         {setShowPassengers3 && (
             
             <div>
-            <h1>Passenger List</h1>   
+              
             {passengers3.length > 0 && (
+              <>
+              <h1>Passenger List</h1>
               <table className="table">
                 <thead>
                   <tr>
@@ -69,6 +71,7 @@ const AllPassenger = () => {
                   ))}
                 </tbody>
               </table>
+              </>
             )}
           </div>
         )}
