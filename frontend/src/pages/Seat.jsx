@@ -36,7 +36,7 @@ const Seat = () => {
     };
 
     const handleCheckButtonClick = () => {
-        // navigateto();
+        navigateto();
         setSeatNo();
         
         window.scrollTo(0, 0);

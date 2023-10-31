@@ -13,7 +13,7 @@ const Ticket = () => {
 
   const [ticket, setTicket] = useState();
 
-
+  const schedule_id = sessionStorage.getItem("flight_schedule_id");
 
 
 
@@ -54,9 +54,9 @@ const Ticket = () => {
     {ticket.map((row, index) => (
       <div key={index}>
         <p>Ticket ID: {row[0]}</p>
-        <p>Flight Number: {row[1]}</p>
-        <p>Departure Date: {row[2]}</p>
-        <p>Seat Number: {row[3]}</p>
+        <p>Flight Number: {schedule_id}</p>
+        <p>Booking ID: {row[1]}</p>
+        <p>Ticket Price: {row[3]}</p>
       </div>
     ))}
   </div>
