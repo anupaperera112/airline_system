@@ -1,111 +1,136 @@
-import React ,{useState}from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
-import './ReservationForm.css';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-const ReservationForm1 = () => {
-  const navigate = useNavigate(); 
+function PassengersList() {
+  const [flightNo, setFlightNo] = useState('');
+  const [passengers, setPassengers] = useState([]);
+  const [error, setError] = useState('');
 
-  const [trip, setTrip] = useState({get_date: '',});
-  const [schedule, setSchedule] = useState([]);
-  const [showSchedule, setShowSchedule] = useState(false);
+  const handleChange = (event) => {
+    setFlightNo(event.target.value);
+  };
 
-  const handleChange = e => { setTrip(prev => ({ ...prev, [e.target.name]: e.target.value}))}
-
-
-  const handleFlight = () => {
-    const tripData = {
-        get_date: trip.get_date,
-    };
-
-    axios.post('http://127.0.0.1:5000/get_flight_schedule', tripData,{
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios.post('http://127.0.0.1:5000/passengers_list', {
+      flight_no: flightNo
+    }, {
       headers: {
         'Content-Type': 'application/json'
-      },
+      }
     })
     .then(response => {
-      console.log(response.data);
-      setSchedule(response.data);
-      setShowSchedule(true);
-    //   if(response.data && response.status===200){
-  
-    //       sessionStorage.setItem("flight_schedule_id",JSON.stringify(response.data.flight_schedule_id));
-    //       sessionStorage.setItem("flight_date",JSON.stringify(response.data.flight_date));
-    //       sessionStorage.setItem("arrival_time",JSON.stringify(response.data.arrival_time));
-    //       sessionStorage.setItem("departure_time",JSON.stringify(response.data.departure_time));
-    //       sessionStorage.setItem("aircraft_id",JSON.stringify(response.data.aircraft_id));
-    //       sessionStorage.setItem("flight_id",JSON.stringify(response.data.flight_id));
-    
-    //       navigate('/availability');
-    //       window.scrollTo(0, 0);
-
-    //   }
+      setPassengers(response.data);
+      setError('');
     })
     .catch(error => {
-      // Handle errors from the backend (e.g., display an error message)
-      console.error(error);
-
-      if(error.response.status===401){
-        alert("there are no flights available for this route");
-        // navigate('/home');
-        // window.scrollTo(0, 0);
-      }
+      setPassengers([]);
+      setError(error.response.data.error);
     });
   };
-  
-  return (
-    <div className="reservation-form-container">
-      <Container>
-        <Row className="justify-content-center align-items-center form-row">
-            <Row>
-                <form className="reservation-form">
-                  <h3>Departure</h3>
-                  <div className="form-group">
-                    <label htmlFor="departure-date">Date:</label>
-                    <input type="date" id="departure-date" name="get_date" required className="form-control" onChange={handleChange}/>
-                  </div>
-                  
-                </form>
-            </Row>
 
-            <Row>
-                <Col lg="12" className="text-right">      
-                <button className="btn-primary" onClick={handleFlight}> Check </button>
-                </Col>
-            </Row>
-            {showSchedule && (
-                        <Row>
-                            <div style={{ textAlign: 'center' }}>
-                                <h1>Flight Schedule</h1>
-                                <table style={{backgroundColor: 'white'}}>
-                                    <thead>
-                                        <tr>
-                                            <th>Flight Number</th>
-                                            <th>Origin</th>
-                                            <th>Departure Time</th>
-                                            <th>Arrival Time</th>
-                                            
-                                            <th>Destination</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {schedule.map(row => (
-                                            <tr key={row[0]}>
-                                                {row.map((cell, index) => (
-                                                    <td key={index}>{cell}</td>
-                                                ))}
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </Row>
-                    )}
-        </Row>
-      </Container>
+  return (
+    <div>
+      <h1>Passenger List</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="flight-no">Enter Flight Number:</label>
+          <input type="text" id="flight-no" name="flight_no" required className="form-control" onChange={handleChange}/>
+        </div>
+        <button type="submit" className="btn btn-primary">Get Passenger List</button>
+      </form>
+      {error && (
+        <div className="alert alert-danger" role="alert">
+          {error}
+        </div>
+      )}
+      {passengers.length > 0 && (
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Passenger ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Seat Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            {passengers.map(row => (
+              <tr key={row[0]}>
+                {row.map((cell, index) => (
+                  <td key={index}>{cell}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
+}
+
+import React, { useState } from 'react';
+import axios from 'axios';
+
+function PassengerCount() {
+const [trip, setTrip] = useState({ date1: '', date2: '', destination: '' });
+  const [passengerCount, setPassengerCount] = useState(0);
+  const [error, setError] = useState('');
+
+const handleChange = (event) => {
+    const { name, value } = event.target;
+    setTrip({ ...trip, [name]: value });
 };
 
-export default ReservationForm1;
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios.post('http://127.0.0.1:5000/number_of_passengers_for_dest_range', {
+      date1: date1,
+      date2: date2,
+      destination: destination
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      setPassengerCount(response.data[0][0]);
+      setError('');
+    })
+    .catch(error => {
+      setPassengerCount(0);
+      setError(error.response.data.error);
+    });
+  };
+
+  return (
+    <div>
+      <h1>Passenger Count</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="date1">Enter Start Date:</label>
+          <input type="date" id="date1" name="date1" required className="form-control" onChange={handleChange}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="date2">Enter End Date:</label>
+          <input type="date" id="date2" name="date2" required className="form-control" onChange={handleChange}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="destination">Enter Destination:</label>
+          <input type="text" id="destination" name="destination" required className="form-control" onChange={handleChange}/>
+        </div>
+        <button type="submit" className="btn btn-primary">Get Passenger Count</button>
+      </form>
+      {error && (
+        <div className="alert alert-danger" role="alert">
+          {error}
+        </div>
+      )}
+      {passengerCount > 0 && (
+        <div className="alert alert-success" role="alert">
+          Number of passengers for destination {destination} between {date1} and {date2}: {passengerCount}
+        </div>
+      )}
+    </div>
+  );
+}

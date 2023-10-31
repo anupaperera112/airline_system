@@ -11,11 +11,12 @@ import Login from '../pages/Login';
 import Availability from '../pages/Availability';
 import Seat from '../pages/Seat';
 import User from '../pages/User';
-import Register from '../pages/Register';
+import Ticket from '../pages/Ticket';
 import Guest from '../pages/Guest';
 import Registered_user from '../pages/Registered_user';
 import Thankyou from '../pages/Thankyou';
 import Profile from '../pages/Profile';
+import Reports from '../pages/Reports';
 
 
 
@@ -43,15 +44,14 @@ const Routers = () => {
     <Route path='/login' element={<Login/>} />
     <Route path='/availability' element={<Availability/>} />
     <Route path='/seat' element={<Seat/>} />
-    <Route path='/register' element={<Register/>} />
+    <Route path='/ticket' element={<Ticket/>} />
     <Route path='/guest' element={<Guest/>} />
     <Route path='/user' element={<User/>} />
     <Route path='/profile' element={<Profile/>} />
     <Route path='/registered_user' element={<Registered_user/>} />
     <Route path='/thank-you' element={<Thankyou/>}/>
-
+    <Route path='/reports' element={<Reports/>}/>
     <Route path='/user_profile' element={<User_profile/>}/>
-
     <Route path='/pay' element={<Pay/>}/>
    </Routes>
   )
