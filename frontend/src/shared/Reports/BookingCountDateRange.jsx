@@ -40,6 +40,7 @@ const BookingCountDateRange = () => {
 
     return(
         <Container style={{ backgroundColor: '#f0f0f0' }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
         <form className="reservation-form">
             <h3>Total booking count of a given passenger type in a given date range</h3>
             <div className="form-group">
@@ -63,7 +64,9 @@ const BookingCountDateRange = () => {
             </div>
 
         </form>
+        </div>
         <button className="btn-primary" onClick={handleNumber_of_bookings_for_dest_range}> Get Report </button>
+        <br/>
         {setShowBookingCount && (
             
             <div>

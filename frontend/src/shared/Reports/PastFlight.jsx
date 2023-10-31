@@ -40,6 +40,7 @@ const PastFlight = () => {
     
     return(
         <Container style={{ backgroundColor: '#f0f0f0' }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}> 
         <form className="reservation-form">
             <h3>All past flights that has travelled from a given origin to a given destination</h3>
             <div className="form-group">
@@ -73,7 +74,9 @@ const PastFlight = () => {
                 </select>
             </div>
         </form>
+        </div>
         <button className="btn-primary" onClick={handlepast_flight}> Get Report </button>
+        <br/>
         {setShowPassFlight && (
             
             <div>

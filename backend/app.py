@@ -11,11 +11,12 @@ import json
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
+CORS(app)
 
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Anupa2001'
+app.config['MYSQL_PASSWORD'] = 'Lasana219'
 app.config['MYSQL_DB'] = 'database_v4'
 
 

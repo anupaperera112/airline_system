@@ -40,6 +40,7 @@ const PassengerCountDateRange = () => {
 
     return(
         <Container style={{ backgroundColor: '#f0f0f0' }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>  
         <form className="reservation-form">
             <h3>Number of passengers travelling to a given destination</h3>
             <div className="form-group">
@@ -68,7 +69,9 @@ const PassengerCountDateRange = () => {
             </div>
 
         </form>
+        </div>
         <button className="btn-primary" onClick={handleNumber_of_passengers_for_dest_range}> Get Report </button>
+        <br/>
         {setShowPassengerCount && (
             
             <div>

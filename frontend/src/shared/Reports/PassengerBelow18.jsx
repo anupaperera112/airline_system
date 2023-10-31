@@ -41,6 +41,7 @@ const PassengerBelow18 = () => {
 
       return(
         <Container style={{ backgroundColor: '#f0f0f0' }}>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <form className="reservation-form">
                     <h3>Passengers below 18 years of age</h3>
                     <div className="form-group">
@@ -48,7 +49,9 @@ const PassengerBelow18 = () => {
                         <input type="text" id="flight-number" name="flight_no" required className="form-control" onChange={handleChange}/>                                    </div>
     
                 </form>
+                </div>
                 <button className="btn-primary" onClick={handlePassengers_below_18}> Get Report </button>
+                <br/>
                 {setShowPassengers2 && (
                     
                     <div>
