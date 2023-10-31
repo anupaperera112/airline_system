@@ -82,42 +82,11 @@ const Seat = () => {
                         <img src={userImage} alt="User Profile" className="img-fluid" />
                     </Col>
                 </Row>
-                <Row>your plane {airCraftModel}</Row>
-                <Row>
-                    <table>
-                        <th>
-                            <tr>
-                                <td className="seat">Air Craft</td>
-                                <td className="seat">NO. Economy</td>
-                                <td className="seat">NO. Business</td>
-                                <td className="seat">NO. Platinum</td>
-                            </tr>
-                        </th>
-                        <tr>
-                            <td>Airbus A380</td>
-                            <td>427</td>
-                            <td>76</td>
-                            <td>14</td>
-                        </tr>
-                        <tr>
-                            <td>Boeing 737</td>
-                            <td>102</td>
-                            <td>48</td>
-                            <td>16</td>
-                        </tr>
-                        <tr>
-                            <td>Boeing 757</td>
-                            <td>108</td>
-                            <td>45</td>
-                            <td>16</td>
-                        </tr>
-                    </table>
-
-
+                
                 {/* plane type */}
                 <Row className="justify-content-center mb-3">
                     <Col md={6}>
-                        <p className="plane-message">✈️  Your plane is "Boeing 737"</p>
+                        <p className="plane-message">✈️  Your plane is a {airCraftModel}</p>
                     </Col>
                 </Row>
 
@@ -136,21 +105,21 @@ const Seat = () => {
                             <tbody>
                                 <tr>
                                     <td>Airbus A380</td>
-                                    <td>427</td>
-                                    <td>76</td>
-                                    <td>14</td>
+                                    <td>1001 - 1427</td>
+                                    <td>2001 - 2076</td>
+                                    <td>3001 - 3014</td>
                                 </tr>
                                 <tr>
                                     <td>Boeing 737</td>
-                                    <td>102</td>
-                                    <td>48</td>
-                                    <td>16</td>
+                                    <td>1001 - 1102</td>
+                                    <td>2001 - 2048</td>
+                                    <td>3001 - 3016</td>
                                 </tr>
                                 <tr>
                                     <td>Boeing 757</td>
-                                    <td>108</td>
-                                    <td>45</td>
-                                    <td>16</td>
+                                    <td>1001 - 1108</td>
+                                    <td>2001 - 2045</td>
+                                    <td>3001 - 3016</td>
                                 </tr>
                             </tbody>
                         </Table>
@@ -158,7 +127,7 @@ const Seat = () => {
                 </Row>
                 <Row className="justify-content-center mb-3">
                     <Col md={4}>
-                    <div className="mb-4 row align-items-center">
+                    {/* <div className="mb-4 row align-items-center">
                         <div className="col-md-5">
                         <label htmlFor="numberOfSeats" className="form-label">No. of seats : </label>
 
@@ -167,10 +136,10 @@ const Seat = () => {
                         <div className="col-md-6">
                             <input type="number" className="form-control" id="numberOfSeats" placeholder="Enter number of seats" min="0" />
                         </div>
-                    </div>
+                    </div> */}
 
                         <div className="mb-3">
-                            <label htmlFor="seatNumbers" className="form-label">Seat Numbers(for economy 10xx, for business 30xx, for platinum 20xx)</label>
+                            <label htmlFor="seatNumbers" className="form-label">Seat Numbers (for economy 10xx, for business 20xx, for platinum 30xx)</label>
                             <input type="text" className="form-control" id="seatNumbers" value={seat.seatNumber} required name="seatNumber" placeholder="Enter seat numbers"  onChange={handleChange}/>
                         </div>
                     </Col>

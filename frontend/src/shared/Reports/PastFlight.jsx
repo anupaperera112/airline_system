@@ -19,6 +19,7 @@ const PastFlight = () => {
             arrivalLocation: reportData.arrivalLocation,
 
         };
+        setPassFlight([]);
         axios.post('http://127.0.0.1:5000/past_flight', sendReportData, {
           headers: {
             'Content-Type': 'application/json',
