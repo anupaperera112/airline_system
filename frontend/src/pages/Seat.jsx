@@ -82,7 +82,7 @@ const Seat = () => {
                         <img src={userImage} alt="User Profile" className="img-fluid" />
                     </Col>
                 </Row>
-                
+
                 {/* plane type */}
                 <Row className="justify-content-center mb-3">
                     <Col md={6}>

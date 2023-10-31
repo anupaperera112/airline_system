@@ -1,2 +1,7 @@
 node_modules
 cmake-build-debug
+backend/__pycache__/func.cpython-310.pyc
+backend/__pycache__/app.cpython-310.pyc
+backend/app.py
+.gitignore
+.gitignore

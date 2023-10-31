@@ -40,21 +40,29 @@ const AllPassenger = () => {
 
     return(
         <Container style={{ backgroundColor: '#f0f0f0' }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
         <form className="reservation-form">
-            <h3>All passenger list</h3>
+            <h3>Passenger lists of flights</h3>
             <div className="form-group">
-                <label htmlFor="departure-date">Enter flight Number here:</label>
+                <label htmlFor="departure-date">Enter flight schedule ID here:</label>
                 <input type="text" id="flight-number" name="flight_no" required className="form-control" onChange={handleChange}/>                                    </div>
 
         </form>
+        </div>
         <button className="btn-primary" onClick={handlePassengersList}> Get Report </button>
+        <br/>
         {setShowPassengers3 && (
             
             <div>
-              
+
+             
             {passengers3.length > 0 && (
               <>
-              <h1>Passenger List</h1>
+              <h1>Passenger List</h1>  
+
+              
+
+
               <table className="table">
                 <thead>
                   <tr>
