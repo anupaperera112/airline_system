@@ -1,15 +1,15 @@
-import React from 'react';
-import '../styles/home.css';
-import '../styles/about.css'; 
-import ProfileCard from '../shared/ProfileCard'; 
-import '../styles/profile.css'; 
-import backgroundImg from '../assets/images/back.jpg';
+import React from "react";
+import "../styles/home.css";
+import "../styles/about.css";
+import ProfileCard from "../shared/ProfileCard";
+import "../styles/profile.css";
+import backgroundImg from "../assets/images/back.jpg";
 
-import profile1 from '../assets/images/profile1.jpg';
-import profile2 from '../assets/images/profile2.jpg';
-import profile3 from '../assets/images/profile3.jpeg';
-import profile4 from '../assets/images/profile4.jpg';
-import profile5 from '../assets/images/profile5.jpg';
+import profile1 from "../assets/images/profile1.jpg";
+import profile2 from "../assets/images/profile2.jpg";
+import profile3 from "../assets/images/profile3.jpeg";
+import profile4 from "../assets/images/profile4.jpg";
+import profile5 from "../assets/images/profile5.png";
 
 function Card_about1({ title, text, cardColor, titleFontSize }) {
   const cardStyle = {
@@ -17,7 +17,7 @@ function Card_about1({ title, text, cardColor, titleFontSize }) {
   };
 
   const titleStyle = {
-    fontSize: titleFontSize || '1.5rem', 
+    fontSize: titleFontSize || "1.5rem",
   };
 
   return (
@@ -30,13 +30,12 @@ function Card_about1({ title, text, cardColor, titleFontSize }) {
   );
 }
 
-
 function About() {
   const mainStyle = {
     backgroundImage: `url(${backgroundImg})`,
-    backgroundSize: 'cover', 
-    backgroundRepeat: 'no-repeat', 
-    backgroundPosition: 'center',
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
   };
 
   return (
@@ -46,7 +45,6 @@ function About() {
         <Card_about1
           title="Vision"
           text="To be the world's preferred airline, known for our commitment to safety, exceptional service, and continuous innovation, making air travel accessible and enjoyable for people around the globe."
-          
         />
         <Card_about1
           title="Mission"
@@ -65,13 +63,13 @@ function About() {
           role="Front-end Developer"
           image={profile1}
         />
-        
+
         <ProfileCard
           name="Subendiran Pranavan"
           role="Front-end Developer"
           image={profile2}
         />
-       
+
         <ProfileCard
           name="Lasana Subasinghe"
           role="Data base manager"
@@ -82,7 +80,7 @@ function About() {
           role="Back-end Developer"
           image={profile5}
         />
-         <ProfileCard
+        <ProfileCard
           name="Anupa Perera  "
           role="Back-end Developer"
           image={profile3}
