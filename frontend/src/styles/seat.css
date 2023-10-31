@@ -1,6 +1,53 @@
 .seat-box{
-    background-color: #FAFAEB;
+    background-color: #fffacc;
     margin-top: 20vh;
     margin-bottom: 20vh;
 }
 
+
+
+.table tbody tr:nth-child(odd) {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.table thead th {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+}
+
+.table tbody tr {
+    background-color: #ffffff; 
+}
+
+.table tbody tr td {
+    border-color: #dddddd; 
+    padding: 10px; 
+    text-align: center; 
+}
+
+
+.table tbody tr:hover {
+    background-color: #d3e0ea;
+}
+
+
+
+.table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+
+.plane-message {
+    font-family:georgia, serif;
+	  color:black;
+	  font-size:1.5rem;
+	  font-weight:bold;
+	  font-style:italic;
+	  letter-spacing:.1em;
+	  padding-bottom:35px;
+}
