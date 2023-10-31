@@ -7,7 +7,7 @@ import backgroundImg from '../assets/images/back.jpg';
 
 import profile1 from '../assets/images/profile1.jpg';
 import profile2 from '../assets/images/profile2.jpg';
-import profile3 from '../assets/images/profile3.jpg';
+import profile3 from '../assets/images/profile3.jpeg';
 import profile4 from '../assets/images/profile4.jpg';
 import profile5 from '../assets/images/profile5.jpg';
 
@@ -65,26 +65,28 @@ function About() {
           role="Front-end Developer"
           image={profile1}
         />
+        
         <ProfileCard
           name="Subendiran Pranavan"
           role="Front-end Developer"
           image={profile2}
         />
-        <ProfileCard
-          name="Anupa  Perera"
-          role="Back-end Developer"
-          image={profile3}
-        />
+       
         <ProfileCard
           name="Lasana Subasinghe"
           role="Data base manager"
           image={profile4}
         />
-        {/* <ProfileCard
-          name="Developer 5"
+        <ProfileCard
+          name="Zaky Ahamed"
           role="Back-end Developer"
           image={profile5}
-        /> */}
+        />
+         <ProfileCard
+          name="Anupa Perera  "
+          role="Back-end Developer"
+          image={profile3}
+        />
       </section>
     </main>
   );
