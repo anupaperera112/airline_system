@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Container} from 'reactstrap';
 import axios from 'axios';
 
 const PastFlight = () => {
@@ -19,6 +18,7 @@ const PastFlight = () => {
             arrivalLocation: reportData.arrivalLocation,
 
         };
+        setPassFlight([]);
         axios.post('http://127.0.0.1:5000/past_flight', sendReportData, {
           headers: {
             'Content-Type': 'application/json',

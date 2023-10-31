@@ -54,10 +54,15 @@ const AllPassenger = () => {
         {setShowPassengers3 && (
             
             <div>
+
              
             {passengers3.length > 0 && (
               <>
               <h1>Passenger List</h1>  
+
+              
+
+
               <table className="table">
                 <thead>
                   <tr>

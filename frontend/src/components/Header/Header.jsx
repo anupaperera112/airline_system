@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Container, Row, Button } from 'reactstrap';
+import { Container, Row, Button, Col } from 'reactstrap';
 import { NavLink, useNavigate} from 'react-router-dom';
 import logowithname from '../../assets/images/logo3.png';
 import './header.css';
@@ -24,6 +24,10 @@ const nav__links = [
   {
     path: '/services',
     display: 'Services',
+  },
+  {
+    path: '/reports',
+    display: 'Reports',
   },
 ];
 
@@ -136,33 +140,39 @@ const Header = () => {
                   {isSmallScreen && isNavVisible && (
                     <div className="nav__btns d-flex align-items-center gap-4">
                     {!token ? 
-                    <div>
+                    <Row>
+                      <Col>
                       <Button className="btn primary__btn">
                         <NavLink to="/login" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
                          Login
                         </NavLink>
-                    </Button>
-
+                      </Button>
+                      </Col>
+                      <Col>
                     <Button className="btn primary__btn">
                       <NavLink to="/registered_user" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
                         Register
                       </NavLink>
                     </Button>
-                    </div>
+                    </Col>
+                    </Row>
                     :
-                    <div>
+                    <Row>
+                      <Col>
                       <Button className="btn primary__btn">
                          <NavLink to="/home" onClick={() => { closeMobileMenu(); scrollToTop(); handleLogout(); }} >
                          Logout
                          </NavLink>
                       </Button>
-
+                      </Col>
+                      <Col>
                       <Button className="btn primary__btn">
                       <NavLink to="/User_profile" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
                         profile
                       </NavLink>
                       </Button>
-                    </div>
+                      </Col>
+                    </Row>
                     }
                     
                   </div>
@@ -179,33 +189,40 @@ const Header = () => {
                 {!isSmallScreen && (
                   <div className="nav__btns d-flex align-items-center gap-4">
                     {!token ? 
-                    <div>
+                    <Row>
+                      <Col>
                       <Button className="btn primary__btn" >
                         <NavLink to="/login" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
                          Login
                         </NavLink>
-                    </Button>
-
-                    <Button className="btn primary__btn">
-                      <NavLink to="/registered_user" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
-                        Register
-                      </NavLink>
-                    </Button>
-                    </div>
+                      </Button>
+                      </Col>
+                      <Col>
+                      <Button className="btn primary__btn">
+                        <NavLink to="/registered_user" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
+                          Register
+                        </NavLink>
+                      </Button>
+                      </Col>
+                    
+                    </Row>
                     :
-                    <div>
+                    <Row>
+                      <Col>
                       <Button className="btn primary__btn">
                          <NavLink to="/home" onClick={() => { closeMobileMenu(); scrollToTop(); handleLogout(); }} >
                          Logout
                          </NavLink>
                       </Button>
-
+                      </Col>
+                      <Col>
                       <Button className="btn primary__btn">
                       <NavLink to="/User_profile" onClick={() => { closeMobileMenu(); scrollToTop(); }}>
                         profile
                       </NavLink>
                       </Button>
-                    </div>
+                      </Col>
+                    </Row>
                     }
                     
                   </div>

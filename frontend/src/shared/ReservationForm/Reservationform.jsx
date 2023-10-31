@@ -15,9 +15,7 @@ const ReservationForm = () => {
 
   const handleChange = e => { setTrip(prev => ({ ...prev, [e.target.name]: e.target.value}))}
 
-  const handleCheckButtonClick = () => {
- 
-  };
+
 
   const handleFlight = () => {
     const tripData = {
