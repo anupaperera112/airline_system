@@ -113,7 +113,7 @@ const Seat = () => {
                         </tr>
                     </table>
 
-
+                </Row>
                 {/* plane type */}
                 <Row className="justify-content-center mb-3">
                     <Col md={6}>

@@ -16,14 +16,25 @@ const Reports = () => {
 
     return (
         <section>
-          <AircraftTypeTotalRevenue/>
+          <br/>
+          <AllPassenger/>
           <PassengerAbove18/>
           <PassengerBelow18/>
-          <AllPassenger/>
-          <PastFlight/>
-          <BookingCountDateRange/>
+          <br />
           <br />
           <PassengerCountDateRange/>
+          <br />
+          <br />
+          <BookingCountDateRange/>          
+          <br />
+          <br />
+          <PastFlight/>
+          <br />
+          <br />
+          <AircraftTypeTotalRevenue/>
+          <br />
+          
+          
         </section>
     );
 };

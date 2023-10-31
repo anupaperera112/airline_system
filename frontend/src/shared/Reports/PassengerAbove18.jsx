@@ -46,17 +46,19 @@ const PassengerAbove18 = () => {
         <section>
         <Container style={{ backgroundColor: '#f0f0f0' }}>
         <form className="reservation-form">
-            <h3>Passenger list age above 18</h3>
+            <h3>Passengers above 18 years of age</h3>
             <div className="form-group">
-                <label htmlFor="departure-date">Enter flight Number here:</label>
+                <label htmlFor="departure-date">Enter flight schedule ID here:</label>
                 <input type="text" id="flight-number" name="flight_no" required className="form-control" onChange={handleChange}/>                                    </div>
 
         </form>
         <button className="btn-primary" onClick={handlePassengers_above_18}> Get Report </button>
         {setShowPassengers1 && (
             <div>
-            <h1>Passenger List</h1>   
+             
             {passengers1.length > 0 && (
+              <>
+              <h1>Passenger List</h1>  
               <table className="table">
                 <thead>
                   <tr>
@@ -73,6 +75,7 @@ const PassengerAbove18 = () => {
                   ))}
                 </tbody>
               </table>
+              </>
             )}
           </div>
         )}
