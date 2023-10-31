@@ -4,6 +4,8 @@ import { Container, Row, Col } from 'reactstrap';
 import './ReservationForm.css';
 import axios from 'axios';
 
+// should add required fields
+
 const ReservationForm1 = () => {
   const navigate = useNavigate(); 
 
@@ -14,8 +16,28 @@ const ReservationForm1 = () => {
   const handleChange = e => { setTrip(prev => ({ ...prev, [e.target.name]: e.target.value}))}
 
   const navigateto = () => {
-      navigate('/availability');
+      navigate('/seat');
       window.scrollTo(0, 0);   
+  };
+
+
+  const goHomeReports = () => {
+    navigate('/reports');      
+    window.scrollTo(0, 0); 
+  };
+  const goHomeTicket = () => {
+    navigate('/ticket');      
+    window.scrollTo(0, 0); 
+  };
+
+  const setFlight = ()=> {
+    sessionStorage.setItem("flight_schedule_id",trip.flight_number);
+   
+  };
+
+  const handleCombinedClick = () => {
+    setFlight();
+    navigateto();
   };
 
   const handleFlight = () => {
@@ -32,19 +54,8 @@ const ReservationForm1 = () => {
       console.log(response.data);
       setSchedule(response.data);
       setShowSchedule(true);
-    //   if(response.data && response.status===200){
-  
-    //       sessionStorage.setItem("flight_schedule_id",JSON.stringify(response.data.flight_schedule_id));
-    //       sessionStorage.setItem("flight_date",JSON.stringify(response.data.flight_date));
-    //       sessionStorage.setItem("arrival_time",JSON.stringify(response.data.arrival_time));
-    //       sessionStorage.setItem("departure_time",JSON.stringify(response.data.departure_time));
-    //       sessionStorage.setItem("aircraft_id",JSON.stringify(response.data.aircraft_id));
-    //       sessionStorage.setItem("flight_id",JSON.stringify(response.data.flight_id));
-    
-    //       navigate('/availability');
-    //       window.scrollTo(0, 0);
+      
 
-    //   }
     })
     .catch(error => {
       // Handle errors from the backend (e.g., display an error message)
@@ -76,6 +87,9 @@ const ReservationForm1 = () => {
             <Row>
                 <Col lg="12" className="text-right">      
                 <button className="btn-primary" onClick={handleFlight}> Check </button>
+                <button className="btn-primary" onClick={goHomeReports}> rep </button>
+                <button className="btn-primary" onClick={goHomeTicket}> ticket </button>
+
                 </Col>
             </Row>
             {showSchedule && (
@@ -110,10 +124,10 @@ const ReservationForm1 = () => {
                                     <h3>Departure</h3>
                                     <div className="form-group">
                                         <label htmlFor="departure-date">Enter flight Number here:</label>
-                                        <input type="text" id="flight-number" name="flight_number" required className="form-control" onChange={handleChange}/>                                    </div>
+                                        <input type="text" id="flight-number" name="flight_number" required className="form-control" onChange={handleChange} />                                    </div>
                   
                                 </form>
-                                <button className="btn-primary" onClick={navigateto}> BOOK NOW </button>
+                                <button className="btn-primary" onClick={handleCombinedClick}> BOOK NOW </button>
                             </div>
                             
                         </Row>

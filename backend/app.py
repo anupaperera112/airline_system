@@ -29,11 +29,11 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 jwt = JWTManager(app)
 
 
-@app.route('/')
+@app.route('/', methods=["POST"])
 def hello_world():
     return 'Hello, World!'
 
-
+###8888
 @app.route("/signup/<type>", methods=["POST"])
 def signup(type):
     # # Extract data from the JSON request data
@@ -51,29 +51,43 @@ def signup(type):
     age = calculate_age(birthday)
     address = addressLine1 + " " + addressLine2 + " " + city
 
-    cur = mysql.connection.cursor()
-    cur.execute("""call check_user_exsits(%s);;""", (email,))
-    user_exists = cur.fetchone()
+    cursor = mysql.connection.cursor()
 
-    if user_exists:
+    cursor.execute("""call check_user_exsits(%s);;""", (email,))
+    Id1 = cursor.fetchall()
+    if Id1:
         return jsonify({"error": "Email already exists"}), 409
+    
+    cursor.execute("""call check_passport(%s);;""", (passportNumber,))
+    Id2 = cursor.fetchall()
+    if Id2:
+        return jsonify({"error": "passport already exists"}), 410
 
     if (type == "r"):
+
         password = request.json["password"]
         hashed_password = bcrypt.generate_password_hash(password)
-        cur.execute("""call register(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);""",
-                    ("gold", firstName, lastName, 0, age, email, gender, passportNumber, address, country, birthday, hashed_password,))
-    else:
-        cur.execute("""call register_guest(%s, %s, %s, %s, %s, %s, %s, %s, %s);""",
-                    (firstName, lastName, age, email, gender, passportNumber, address, country, birthday,))
+        cursor.execute("""call new_user(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);""",
+                    ("new_user", firstName, lastName, 0, age, email, gender, passportNumber, address, country, birthday, hashed_password,))
 
+    else:
+
+        cursor.execute("""call Unregistered(%s, %s, %s, %s, %s, %s, %s, %s, %s);""",
+                    (firstName, lastName, age, email, gender, passportNumber, address, country, birthday,))
+        
+       
+    cursor.execute("""SELECT passenger_id FROM passenger ORDER BY passenger_id DESC LIMIT 1;""")
+    passenger_id = cursor.fetchone()[0]
     mysql.connection.commit()
-    cur.close()
+    cursor.close()
+    
+ 
     return jsonify({
-        "message": "User created successfully"
+        "message": "User created successfully",
+        "passenger_id": passenger_id,
     }), 201
 
-
+###8888
 @app.route("/login", methods=["POST"])
 def login_user():
     # Extract email and password from the JSON request data
@@ -95,15 +109,18 @@ def login_user():
         return jsonify({"error": "Invalid Username or Password"}), 401
 
     access_token = create_access_token(identity=email)
+    cur.execute("""SELECT passenger_id FROM registered_passenger where email = %s;""",(email,))
+    passenger_id = cur.fetchone()[0]
 
     cur.close()
 
     return jsonify({
         "access_token": access_token,
-        "email": email
+        "email": email,
+        "passenger_id": passenger_id
     })
 
-
+###8888
 @app.after_request
 def refresh_expiring_jwts(response):
     try:
@@ -121,14 +138,14 @@ def refresh_expiring_jwts(response):
         # Case where there is not a valid JWT. Just return the original respone
         return response
 
-
+###8888
 @app.route("/logout", methods=["POST"])
 def logout():
     response = jsonify({"msg": "logout successful"})
     unset_jwt_cookies(response)
     return response
 
-
+###8888
 @app.route('/profile/<getemail>', methods=["GET"])
 @jwt_required()
 def my_profile(getemail):
@@ -159,7 +176,7 @@ def my_profile(getemail):
 
     return response_body
 
-
+###8888
 @app.route('/getflight', methods=["POST"])
 def get_flight():
     departureLocation = request.json["departureLocation"]
@@ -212,31 +229,41 @@ def get_flight():
 
 @app.route('/booking', methods=["POST"])
 def booking():
-    flight_schedule_id = request.json["flight_schedule_id"]
-    passenger_id = request.json["passenger_id"]
-    seat_no = request.json["seat_no"]
+    flight_schedule_id = int(request.json["flight_schedule_id"])
+    passenger_id = int(request.json["passenger_id"])
+    seat_no = int(request.json["seat_no"])
 
+    current_date = datetime.now().date()
 
     cur = mysql.connection.cursor()
-    cur.execute("""insert into booking (flight_schedule_id, passenger_id, seat_no, payment_status) value (%s, %s, %s, true);""",(flight_schedule_id, passenger_id, seat_no,))
+
+    cur.execute("""select availability from seat where seat_no = %s and flight_schedule_id = %s;""",(seat_no, flight_schedule_id,))
+    availability = cur.fetchone()[0]
+
+    if availability == 1:
+        return jsonify({"error": "Seat not available"}), 401
+
+    cur.execute("""insert into booking (flight_schedule_id, passenger_id, seat_no, payment_status, booking_date) value (%s, %s, %s, true, %s);""",(flight_schedule_id, passenger_id, seat_no,current_date,))
     mysql.connection.commit()
     cur.close()
     return jsonify({"message": "Booking Successful"}), 201
 
 
-@app.route('/viweticket', methods=["GET"])
+@app.route('/viweticket', methods=["POST"])
 def viweTicket():
     passenger_id = request.json["passenger_id"]
     cur = mysql.connection.cursor()
     cur.execute("""select * from ticket where passenger_id = %s;""", (passenger_id,))
     results = cur.fetchall()
+    
     if not results:
         return jsonify({"error": "No tickets found"}), 401
     cur.close()
 
-    return jsonify(results)
+    return jsonify(results), 201
 
 ##############################################################################################################
+###8888
 @app.route('/get_flight_schedule', methods=["POST"])
 def get_flight_schedule():
     get_date = request.json["get_date"]
@@ -253,7 +280,7 @@ def get_flight_schedule():
     cur.close()
 
     results = [None] * len(results1)
-    print(results1)
+
     for i in range(len(results1)):
         
         results[i] = list(results1[i])   
@@ -268,11 +295,11 @@ def get_flight_schedule():
         results[i][4] = arival_time
 
 
-    return jsonify(results)
+    return jsonify(results), 201
 
 
 
-@app.route('/passengers_above_18', methods=["GET"])
+@app.route('/passengers_above_18', methods=["POST"])
 def passengers_above_18():
     flight_no = request.json["flight_no"]
 
@@ -283,10 +310,10 @@ def passengers_above_18():
         return jsonify({"error": "No passenger list found"}), 401
     cur.close()
 
-    return jsonify(results)
+    return jsonify(results), 201
 
 
-@app.route('/passengers_below_18', methods=["GET"])
+@app.route('/passengers_below_18', methods=["POST"])
 def passengers_below_18():
     flight_no = request.json["flight_no"]
 
@@ -297,9 +324,9 @@ def passengers_below_18():
         return jsonify({"error": "No passenger list found"}), 401
     cur.close()
 
-    return jsonify(results)
+    return jsonify(results), 201
 
-@app.route('/passengers_list', methods=["GET"])
+@app.route('/passengers_list', methods=["POSt"])
 def passengers_list():
     flight_no = request.json["flight_no"]
 
@@ -310,9 +337,9 @@ def passengers_list():
         return jsonify({"error": "No passenger list found"}), 401
     cur.close()
 
-    return jsonify(results)
+    return jsonify(results), 201
 
-@app.route('/number_of_passengers_for_dest_range', methods=["GET"])
+@app.route('/number_of_passengers_for_dest_range', methods=["POSt"])
 def number_of_passengers_for_dest_range():
     date1 = request.json["date1"]
     date2 = request.json["date2"]
@@ -325,9 +352,37 @@ def number_of_passengers_for_dest_range():
         return jsonify({"error": "No passenger list found"}), 401
     cur.close()
 
-    return jsonify(results)
+    return jsonify(results), 201
 
-@app.route('/past_flight', methods=["GET"])
+@app.route('/handleNumber_of_bookings_for_dest_range', methods=["POSt"])
+def handleNumber_of_bookings_for_dest_range():
+    date1 = request.json["date1"]
+    date2 = request.json["date2"]
+    ptype = request.json["ptype"]
+
+    cur = mysql.connection.cursor()
+    cur.execute("""select get_bookcount_by_type_date(%s,%s,%s);""",(date1, date2, ptype,))
+    results = cur.fetchall()
+    if not results:
+        return jsonify({"error": "No booking list found"}), 401
+    cur.close()
+
+    return jsonify(results), 201
+
+@app.route('/handleTotalRevenue', methods=["POSt"])
+def handleTotalRevenue():
+    Atype = request.json["Atype"]
+
+    cur = mysql.connection.cursor()
+    cur.execute("""select revenue_by_ac_model(%s);""",(Atype,))
+    results = cur.fetchall()
+    if not results:
+        return jsonify({"error": "No booking list found"}), 401
+    cur.close()
+
+    return jsonify(results), 201
+
+@app.route('/past_flight', methods=["POST"])
 def past_flight():
     departureLocation = request.json["departureLocation"]
     arrivalLocation = request.json["arrivalLocation"]
@@ -338,7 +393,15 @@ def past_flight():
     if not results:
         return jsonify({"error": "No flights found"}), 401
     cur.close()
-    return jsonify(results)
+    return jsonify(results), 201
+
+@app.route('/getAircraft', methods=["POST"])
+def getAircraft():
+    flight_schedule_id = request.json["flight_schedule_id"]
+    cur = mysql.connection.cursor()
+    cur.execute("""call get_aircraft_model(%s);""", (flight_schedule_id,))
+    results = cur.fetchone()[0]
+    return jsonify(results), 201
 
 if __name__ == '__main__':
     app.run()
