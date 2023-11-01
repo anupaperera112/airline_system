@@ -56,6 +56,7 @@ const Home = () => {
       </section>
 
       <ReservationForm />
+      
       <section>
       <Col lg="12">
               <div className="head">If not </div>

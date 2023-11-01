@@ -26,6 +26,10 @@ const nav__links = [
     display: 'Services',
   },
   {
+    path: '/ticket',
+    display: 'Tickets',
+  },
+  {
     path: '/reports',
     display: 'Reports',
   },

@@ -56,6 +56,7 @@ const ReservationForm = () => {
   return (
     <div className="reservation-form-container">
       <Container>
+        <br />
         <Row className="justify-content-center align-items-center form-row">
             <Row>
                 <form className="reservation-form">
@@ -63,6 +64,7 @@ const ReservationForm = () => {
                   <div className="form-group">
                     <label htmlFor="departure-location">Location:</label>
                     <select id="departure-location" name="departureLocation" required className="form-control" onChange={handleChange}>
+                    <option value="" disabled selected>Select your option</option>
                       <option value="DEL">India, new Delhi</option>
                       <option value="BOM">India, Mumbai</option>
                       <option value="MAA">India, Chennai</option>
@@ -91,6 +93,7 @@ const ReservationForm = () => {
                   <div className="form-group">
                     <label htmlFor="arrival-location">Location:</label>
                     <select id="arrival-location" name="arrivalLocation" required className="form-control" onChange={handleChange}>
+                    <option value="" disabled selected>Select your option</option>
                       <option value="DEL">India, new Delhi</option>
                       <option value="BOM">India, Mumbai</option>
                       <option value="MAA">India, Chennai</option>

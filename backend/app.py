@@ -6,18 +6,27 @@ from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, u
 from flask_cors import CORS
 from func import calculate_age
 
+
+
 import json
 
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
-CORS(app)
+
 
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Lasana219'
+app.config['MYSQL_PASSWORD'] = 'Anupa2001'
 app.config['MYSQL_DB'] = 'database_v4'
+
+# connection = pymysql.connect(host='localhost',
+#                              user='root',
+#                              password='Anupa2001',
+#                              database='database_v4',
+#                              charset='utf8mb4',
+#                              cursorclass=pymysql.cursors.DictCursor)
 
 
 mysql = MySQL(app)
@@ -54,12 +63,12 @@ def signup(type):
 
     cursor = mysql.connection.cursor()
 
-    cursor.execute("""call check_user_exsits(%s);;""", (email,))
+    cursor.execute("""call check_user_exsits(%s);""", (email,))
     Id1 = cursor.fetchall()
     if Id1:
         return jsonify({"error": "Email already exists"}), 409
     
-    cursor.execute("""call check_passport(%s);;""", (passportNumber,))
+    cursor.execute("""call check_passport(%s);""", (passportNumber,))
     Id2 = cursor.fetchall()
     if Id2:
         return jsonify({"error": "passport already exists"}), 410
@@ -408,8 +417,11 @@ def past_flight():
     arrivalLocation = request.json["arrivalLocation"]
 
     cur = mysql.connection.cursor()
+    # with connection.cursor() as cursor:
+    #     cursor.execute("""call past_flight(%s, %s);""",(arrivalLocation, departureLocation,))
     cur.execute("""call past_flight(%s, %s);""",(arrivalLocation, departureLocation,))
     results = cur.fetchall()
+    # results = cursor.fetchall()
     if not results:
         return jsonify({"error": "No flights found"}), 401
     cur.close()

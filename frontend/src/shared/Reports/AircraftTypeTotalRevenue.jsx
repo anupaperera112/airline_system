@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import axios from 'axios';
+import '../../styles/reports.css'; 
+
 
 const AircraftTypeTotalRevenue = () => {
     const [reportData, setReportData] = useState({Atype:''});
@@ -37,7 +39,7 @@ const AircraftTypeTotalRevenue = () => {
       };
 
       return(
-        <Container style={{ backgroundColor: '#f0f0f0' }}>
+        <Container style={{ backgroundColor: '#f0f0f0', borderRadius: '50px' }}>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
         <form className="reservation-form">
 
@@ -46,6 +48,7 @@ const AircraftTypeTotalRevenue = () => {
                 <label htmlFor="departure-date">Enter aircraft model:</label>
 
                 <select id="aircraft-model" name="Atype" required className="form-control" onChange={handleChange}>
+                <option value="" disabled selected>Select your option</option>
                     <option value="Boeing 737">Boeing 737</option>
                     <option value="Boeing 757">Boeing 757</option>
                     <option value="Airbus A380">Airbus A380</option> 
@@ -60,12 +63,16 @@ const AircraftTypeTotalRevenue = () => {
 
         
 
-        {showSetTotalRevenue && (
+        {showTotalRevenue && (
             
-            <div>
+          <div style={{ textAlign: 'center' }}>
             <h1>Aircraft revenue</h1>   
           {reportData.Atype} is generated total revenue of: {totalRevenue}
+          <br/>
+          <br/>
+          <br/>
           </div>
+          
         )}
 
     </Container>
