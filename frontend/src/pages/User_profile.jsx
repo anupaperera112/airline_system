@@ -43,7 +43,7 @@ const User_profile = () => {
                         <strong>Last Name:</strong> {userData.last_name}<br />
                         {/* <strong>Country:</strong> {userData.country}<br /> */}
                         <strong>Email:</strong> {userData.email}<br />
-                        <strong>Booking Frequency:</strong> {userData.booking_frequency}
+                        <strong>XP Points:</strong> {userData.booking_frequency}
                         
                     </div>
                     <div>

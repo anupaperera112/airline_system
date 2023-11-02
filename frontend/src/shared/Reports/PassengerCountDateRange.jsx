@@ -39,13 +39,14 @@ const PassengerCountDateRange = () => {
       };
 
     return(
-        <Container style={{ backgroundColor: '#f0f0f0' }}>
+        <Container style={{ backgroundColor: '#f0f0f0', borderRadius: '50px' }}>
         <div style={{ display: 'flex', justifyContent: 'center' }}>  
         <form className="reservation-form">
             <h3>Number of passengers travelling to a given destination</h3>
             <div className="form-group">
                 <label htmlFor="departure-date">Enter destination here:</label>
                 <select id="arrival-location" name="destination" required className="form-control" onChange={handleChange}>
+                <option value="" disabled selected>Select your option</option>
                     <option value="DEL">India, new Delhi</option>
                     <option value="BOM">India, Mumbai</option>
                     <option value="MAA">India, Chennai</option>
@@ -72,11 +73,14 @@ const PassengerCountDateRange = () => {
         </div>
         <button className="btn-primary" onClick={handleNumber_of_passengers_for_dest_range}> Get Report </button>
         <br/>
-        {setShowPassengerCount && (
+        {showPassengerCount && (
             
             <div>
-            <h1>Passenger Count</h1>   
-            Number of passengers for destination {reportData.destination} between {reportData.date1} and {reportData.date2}: {passengerCount}
+            <div style={{ textAlign: 'center' }}>
+          
+            <h2>Number of passengers for destination {reportData.destination} between {reportData.date1} and {reportData.date2}: {passengerCount} </h2> 
+            </div>
+            <br/><br/><br/>
           </div>
         )}
 

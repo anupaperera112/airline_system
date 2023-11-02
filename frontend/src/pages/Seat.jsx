@@ -106,20 +106,23 @@ const Seat = () => {
                                 <tr>
                                     <td>Airbus A380</td>
                                     <td>1001 - 1427</td>
-                                    <td>2001 - 2076</td>
                                     <td>3001 - 3014</td>
+                                    <td>2001 - 2076</td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>Boeing 737</td>
                                     <td>1001 - 1102</td>
-                                    <td>2001 - 2048</td>
                                     <td>3001 - 3016</td>
+                                    <td>2001 - 2048</td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>Boeing 757</td>
                                     <td>1001 - 1108</td>
-                                    <td>2001 - 2045</td>
                                     <td>3001 - 3016</td>
+                                    <td>2001 - 2045</td>
+                                    
                                 </tr>
                             </tbody>
                         </Table>

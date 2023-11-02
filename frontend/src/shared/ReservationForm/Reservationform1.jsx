@@ -72,6 +72,7 @@ const ReservationForm1 = () => {
   return (
     <div className="reservation-form-container">
       <Container>
+        <br />
         <Row className="justify-content-center align-items-center form-row">
             <Row>
                 <form className="reservation-form">
@@ -87,7 +88,7 @@ const ReservationForm1 = () => {
             <Row>
                 <Col lg="12" className="text-right">      
                 <button className="btn-primary" onClick={handleFlight}> Check </button>
-                <button className="btn-primary" onClick={goHomeTicket}> ticket </button>
+                {/* <button className="btn-primary" onClick={goHomeTicket}> ticket </button> */}
 
                 </Col>
             </Row>

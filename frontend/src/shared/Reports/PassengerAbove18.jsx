@@ -44,12 +44,12 @@ const PassengerAbove18 = () => {
 
       return(
         <section>
-        <Container style={{ backgroundColor: '#f0f0f0' }}>
+        <Container style={{ backgroundColor: '#f0f0f0', borderRadius: '50px' }}>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
         <form className="reservation-form">
             <h3>Passengers above 18 years of age</h3>
             <div className="form-group">
-                <label htmlFor="departure-date">Enter flight schedule ID here:</label>
+                <label htmlFor="departure-date">Enter flight ID here:</label>
                 <input type="text" id="flight-number" name="flight_no" required className="form-control" onChange={handleChange}/>                                    </div>
 
         </form>
@@ -61,7 +61,9 @@ const PassengerAbove18 = () => {
              
             {passengers1.length > 0 && (
               <>
-              <h1>Passenger List</h1>  
+              <div style={{ textAlign: 'center' }}>
+                <h1>Passenger List</h1>  
+              </div>
               <table className="table">
                 <thead>
                   <tr>

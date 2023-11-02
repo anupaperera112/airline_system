@@ -39,13 +39,14 @@ const BookingCountDateRange = () => {
       };
 
     return(
-        <Container style={{ backgroundColor: '#f0f0f0' }}>
+        <Container style={{ backgroundColor: '#f0f0f0', borderRadius: '50px' }}>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
         <form className="reservation-form">
             <h3>Total booking count of a given passenger type in a given date range</h3>
             <div className="form-group">
                 <label htmlFor="departure-date">Enter passenger type here:</label>
                 <select id="arrival-location" name="ptype" required className="form-control" onChange={handleChange}>
+                <option value="" disabled selected>Select your option</option>
                     <option value="new_user">new user</option>
                     <option value="Gold">gold</option>
                     <option value="Frequent">frequent</option>
@@ -67,11 +68,12 @@ const BookingCountDateRange = () => {
         </div>
         <button className="btn-primary" onClick={handleNumber_of_bookings_for_dest_range}> Get Report </button>
         <br/>
-        {setShowBookingCount && (
+        {showbookingCount && (
             
-            <div>
-            <h1>Booking Count</h1>   
+            <div style={{ textAlign: 'center' }}>
+             
             Number of Booking for {reportData.ptype} between {reportData.date1} and {reportData.date2}: {bookingCount}
+          <br/><br/><br/>
           </div>
         )}
 

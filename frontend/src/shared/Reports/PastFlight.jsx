@@ -39,13 +39,14 @@ const PastFlight = () => {
       };
     
     return(
-        <Container style={{ backgroundColor: '#f0f0f0' }}>
+        <Container style={{ backgroundColor: '#f0f0f0', borderRadius: '50px' }}>
         <div style={{ display: 'flex', justifyContent: 'center' }}> 
         <form className="reservation-form">
             <h3>All past flights that has travelled from a given origin to a given destination</h3>
             <div className="form-group">
                 <label htmlFor="departure-date">Enter destination here:</label>
                 <select id="arrival-location" name="arrivalLocation" required className="form-control" onChange={handleChange}>
+                <option value="" disabled selected>Select your option</option>
                     <option value="DEL">India, new Delhi</option>
                     <option value="BOM">India, Mumbai</option>
                     <option value="MAA">India, Chennai</option>
@@ -60,6 +61,7 @@ const PastFlight = () => {
                 </select>
                 <label htmlFor="departure-date">Enter origin here:</label>
                 <select id="arrival-location" name="departureLocation" required className="form-control" onChange={handleChange}>
+                <option value="" disabled selected>Select your option</option>
                     <option value="DEL">India, new Delhi</option>
                     <option value="BOM">India, Mumbai</option>
                     <option value="MAA">India, Chennai</option>
@@ -83,7 +85,9 @@ const PastFlight = () => {
               
             {pastFlight.length > 0 && (
               <>
+              <div style={{ textAlign: 'center' }}>
               <h1>Flight List</h1>
+              </div>
               <table className="table">
                 <thead>
                   <tr>
